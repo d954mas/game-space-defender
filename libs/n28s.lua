@@ -110,6 +110,15 @@ function M.register(script)
 	registrator:register()
 end
 
+function M.register_scripts(scripts)
+	assert(#scripts > 0)
+	local registrator = Registrator()
+	for _, script in ipairs(scripts)do
+		registrator:add_script(script)
+	end
+	registrator:register()
+end
+
 M.Registrator = Registrator
 M.Script = Script
 
