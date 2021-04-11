@@ -1,0 +1,155 @@
+[project]
+title = Space Defender
+version = 0.1.0
+dependencies = https://github.com/AGulev/jstodef/archive/1.3.0.zip,https://github.com/DanEngelbrecht/LuaScriptInstance/archive/master.zip,https://github.com/GameAnalytics/GA-SDK-DEFOLD/archive/3.3.10.zip,https://github.com/GameAnalytics/defold-openssl/archive/master.zip
+custom_resources = 
+bundle_exclude_resources = 
+bundle_resources = assets/bundle
+
+[bootstrap]
+main_collection = /init.collectionc
+render = /render/my.renderc
+
+[input]
+game_binding = /game.input_bindingc
+use_accelerometer = 0
+
+[display]
+width = 960
+height = 540
+high_dpi = 1
+fullscreen = 0
+update_frequency = 0
+display_profiles = /builtins/render/default.display_profilesc
+vsync = 0
+
+[physics]
+type = 2D
+debug = 0
+max_collisions = 0
+max_contacts = 0
+world_count = 0
+ray_cast_limit_2d = 0
+ray_cast_limit_3d = 0
+trigger_overlap_capacity = 0
+
+[script]
+shared_state = 1
+
+[library]
+include_dirs = 
+
+[native_extension]
+app_manifest = /app_manifest_debug.appmanifest
+
+[android]
+gcm_sender_id = 
+push_field_text = 
+manifest = /builtins/manifests/android/AndroidManifest.xml
+package = com.community.game
+
+[graphics]
+texture_profiles = /render/my.texture_profiles
+default_texture_min_filter = linear
+default_texture_mag_filter = linear
+verify_graphics_calls = 0
+
+[sound]
+max_sound_buffers = 32
+max_component_count = 32
+max_sound_data = 32
+max_sound_sources = 32
+max_sound_instances = 32
+
+[sprite]
+max_count = 2048
+
+[resource]
+max_resources = 1024
+
+[collection]
+max_instances = 2048
+
+[factory]
+max_count = 16
+
+[spine]
+max_count = 0
+
+[profiler]
+track_cpu = 1
+
+[windows]
+iap_provider = 
+
+[html5]
+archive_location_prefix = archive
+htmlfile = /platform/web/engine_template.html
+show_fullscreen_button = 0
+show_made_with_defold = 0
+scale_mode = fit
+cssfile = /builtins/manifests/web/dark_theme.css
+heap_size = 256
+
+[model]
+max_count = 8
+
+[particle_fx]
+max_particle_count = 1024
+max_count = 128
+
+[gui]
+max_count = 16
+
+[label]
+max_count = 16
+
+[collectionfactory]
+max_count = 8
+
+[tilemap]
+max_count = 0
+max_tile_count = 0
+
+[googleanalytics]
+dispatch_period = 30
+queue_save_period = 60000000
+verbose = 0
+
+[collection_proxy]
+max_count = 8
+
+[engine]
+run_while_iconified = 1
+
+[ios]
+bundle_identifier = com.community.game
+
+[mesh]
+max_count = 0
+
+[gameanalytics]
+game_key_ios = 874dbf76bd66280c43fe98076ad51321
+secret_key_ios = 4046a8d9d19284e623f70424113cc0f4af7d9d69
+game_key_android = 874dbf76bd66280c43fe98076ad51321
+secret_key_android = 4046a8d9d19284e623f70424113cc0f4af7d9d69
+game_key_html5 = 874dbf76bd66280c43fe98076ad51321
+secret_key_html5 = 4046a8d9d19284e623f70424113cc0f4af7d9d69
+game_key_osx = 874dbf76bd66280c43fe98076ad51321
+secret_key_osx = 4046a8d9d19284e623f70424113cc0f4af7d9d69
+game_key_windows = 874dbf76bd66280c43fe98076ad51321
+secret_key_windows = 4046a8d9d19284e623f70424113cc0f4af7d9d69
+game_key_linux = 874dbf76bd66280c43fe98076ad51321
+secret_key_linux = 4046a8d9d19284e623f70424113cc0f4af7d9d69
+build_ios = 0.1
+build_android = 0.1
+build_html5 = 0.1
+build_osx = 0.1
+build_windows = 0.1
+build_linux = 0.1
+custom_dimensions_01 = editor,play_market,game_distribution,poki,itch_io,yandex_games
+
+[game]
+version = dev
+target = editor
+

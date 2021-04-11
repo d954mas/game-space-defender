@@ -1,0 +1,8 @@
+[project]
+title = Space Defender DEV
+
+[android]
+package = com.youd.game.dev
+
+[game]
+version = dev
