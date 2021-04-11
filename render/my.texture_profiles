@@ -47,7 +47,7 @@ profiles {
     formats {
       format: TEXTURE_FORMAT_RGB_16BPP
       compression_level: FAST
-      compression_type: COMPRESSION_TYPE_WEBP_LOSSY
+      compression_type: COMPRESSION_TYPE_DEFAULT
     }
     mipmaps: false
     max_texture_size: 2048
@@ -75,10 +75,11 @@ profiles {
     formats {
       format: TEXTURE_FORMAT_LUMINANCE_ALPHA
       compression_level: FAST
-      compression_type: COMPRESSION_TYPE_WEBP_LOSSY
+      compression_type: COMPRESSION_TYPE_DEFAULT
     }
     mipmaps: false
     max_texture_size: 2048
+    premultiply_alpha: true
   }
 }
 profiles {
@@ -91,5 +92,7 @@ profiles {
       compression_type: COMPRESSION_TYPE_DEFAULT
     }
     mipmaps: true
+    max_texture_size: 0
+    premultiply_alpha: true
   }
 }

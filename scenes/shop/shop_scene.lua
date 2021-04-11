@@ -1,7 +1,7 @@
 local BaseScene = require "libs.sm.scene"
 
 
----@class GameScene:Scene
+---@class ShopScene:Scene
 local Scene = BaseScene:subclass("ShopScene")
 function Scene:initialize()
     BaseScene.initialize(self, "ShopScene", "/shop_scene#collectionproxy")
