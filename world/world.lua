@@ -14,7 +14,6 @@ function M:initialize()
     self.command_executor = CommandExecutor()
     self.game = GameWorld(self)
     self.balance = Balance(self)
-
 end
 
 function M:update(dt)

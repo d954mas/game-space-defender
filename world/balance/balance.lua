@@ -6,6 +6,10 @@ local Balance = COMMON.class("Balance")
 function Balance:initialize(world)
     checks("?","class:World")
     self.world = world
+    self.game_area = {
+        width = 540,
+        height = 540 * 2.2
+    }
 end
 
 
