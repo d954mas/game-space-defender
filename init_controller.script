@@ -103,7 +103,7 @@ function Script:update(dt)
     DEBUG_INFO.update(dt)
     WORLD:update(dt)
 
-    self.stars_view:update(dt)
+   if(self.stars_view) then self.stars_view:update(dt) end
 end
 
 function Script:final()

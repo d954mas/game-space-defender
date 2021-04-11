@@ -1,10 +1,10 @@
 images {
   image: "/assets/images/white.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_4
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
   image: "/assets/images/empty.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_4
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
   image: "/assets/images/game/star.png"
