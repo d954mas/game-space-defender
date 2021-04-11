@@ -1,0 +1,37 @@
+local COMMON = require "libs.common"
+local GUI = require "libs_project.gui.gui"
+local WORLD = require "world.world"
+local SM = require "libs_project.sm"
+
+local BaseGuiScript = require "libs_project.scripts.base_gui_script"
+
+---@class HighscoreSceneGuiScript:ScriptMain
+local Script = COMMON.class("HighscoreSceneGuiScript",BaseGuiScript)
+
+function Script:init()
+   BaseGuiScript.init(self,{context_name = nil})
+end
+
+function Script:bind_vh()
+   self.vh = {
+
+   }
+   self.views = {
+    
+   }
+end
+
+function Script:init_gui()
+   BaseGuiScript.init_gui(self)
+end
+
+function Script:update(dt)
+ 
+end
+
+function Script:on_input(action_id,action)
+  
+end
+
+
+COMMON.N28S.register(Script())
