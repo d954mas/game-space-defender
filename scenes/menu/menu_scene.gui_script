@@ -10,7 +10,7 @@ local BaseGuiScript = require "libs_project.scripts.base_gui_script"
 local Script = COMMON.class("GameSceneGuiScript",BaseGuiScript)
 
 function Script:init()
-   BaseGuiScript.init(self,{context_name = COMMON.CONTEXT.NAMES.GAME_GUI})
+   BaseGuiScript.init(self,{context_name = nil})
 end
 
 function Script:bind_vh()
@@ -18,7 +18,9 @@ function Script:bind_vh()
 
    }
    self.views = {
-    
+      btn_play = GUI.ButtonBase("btn_play"),
+      btn_shop = GUI.ButtonBase("btn_shop"),
+      btn_highscore = GUI.ButtonBase("btn_highscore"),
    }
 end
 
@@ -27,11 +29,13 @@ function Script:init_gui()
 end
 
 function Script:update(dt)
- 
+   BaseGuiScript.update(self,dt)
 end
 
 function Script:on_input(action_id,action)
-  
+   if (self.views.btn_play:on_input(action_id, action)) then return true end
+   if (self.views.btn_shop:on_input(action_id, action)) then return true end
+   if (self.views.btn_highscore:on_input(action_id, action)) then return true end
 end
 
 
