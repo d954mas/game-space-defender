@@ -1,8 +1,8 @@
 local COMMON = require "libs.common"
-local WIDTH = 960
-local HEIGHT = 540
+local WIDTH = 540
+local HEIGHT = 960
 local LOCK_WIDTH = true
-local RESOLUTION_SCALE = 1.4
+local RESOLUTION_SCALE = 0.8
 local INIT_SIZE = 1
 local TAG = "RESIZER"
 local resolutions = {

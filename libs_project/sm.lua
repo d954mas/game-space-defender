@@ -5,10 +5,16 @@ local sm = SM()
 
 local scenes = {
     require "scenes.game.game_scene",
+    require "scenes.menu.menu_scene",
+    require "scenes.shop.shop_scene",
+    require "scenes.highscore.highscore_scene"
 }
 
 sm.SCENES = {
-    GAME = "GameScene"
+    GAME = "GameScene",
+    MENU = "MenuScene",
+    SHOP = "ShopScene",
+    HIGHSCORE = "HighscoreScene"
 }
 
 

@@ -1,4 +1,4 @@
-name: "game"
+name: "game_scene"
 scale_along_z: 0
 embedded_instances {
   id: "controller"

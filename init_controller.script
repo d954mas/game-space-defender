@@ -77,7 +77,7 @@ function Script:init()
 
 
     if not RUN_TEST then
-        SM:show(SM.SCENES.GAME)
+        SM:show(SM.SCENES.MENU)
     else
         self.test_runner = require("tests.tests") -- run tests
         self.test_runner.run()

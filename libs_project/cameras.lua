@@ -5,6 +5,8 @@ local Camera = require "libs.rendercam_camera"
 local Cameras = COMMON.class("Cameras")
 
 function Cameras:initialize()
+
+
 end
 
 function Cameras:init()
