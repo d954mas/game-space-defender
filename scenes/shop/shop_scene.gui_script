@@ -5,7 +5,7 @@ local SM = require "libs_project.sm"
 
 local BaseGuiScript = require "libs_project.scripts.base_gui_script"
 
----@class ShopSceneGuiScript:ScriptMain
+---@class ShopSceneGuiScript:GuiScriptBase
 local Script = COMMON.class("ShopSceneGuiScript", BaseGuiScript)
 
 function Script:init()
@@ -18,24 +18,26 @@ function Script:bind_vh()
         btn_buy_firerate_lbl = gui.get_node("btn_buy_firerate/label")
     }
     self.views = {
-        btn_buy_firerate = GUI.ButtonBase("btn_buy_firerate")
+        btn_buy_firerate = GUI.ButtonBase("btn_buy_firerate"),
+        btn_menu = GUI.ButtonBase("btn_menu"),
     }
 end
 
 function Script:init_gui()
     BaseGuiScript.init_gui(self)
-end
-
-function Script:update(dt)
-    BaseGuiScript.update(self)
+    self.views.btn_menu:set_input_listener(function() SM:back() end)
+    self.views.btn_buy_firerate:set_input_listener(function() WORLD.storage.game:firerate_level_upgrade() end)
 end
 
 function Script:on_storage_changed()
-
+    self.views.btn_buy_firerate:set_ignore_input(not WORLD.storage.game:firerate_level_can_upgrade())
+    gui.set_text(self.vh.btn_buy_firerate_lbl, string.format("Increase fire rate:%d$", WORLD.balance:firerate_level_cost_upgrade_get()))
+    gui.set_text(self.vh.lbl_money, string.format("%d$", WORLD.storage.resource:money_get()))
 end
 
 function Script:on_input(action_id, action)
-
+    if (self.views.btn_buy_firerate:on_input(action_id, action)) then return end
+    if (self.views.btn_menu:on_input(action_id, action)) then return end
 end
 
 COMMON.N28S.register(Script())

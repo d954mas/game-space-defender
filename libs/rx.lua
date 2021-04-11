@@ -724,6 +724,7 @@ end
 ---@param scheduler Scheduler The scheduler to run the Observable on.
 ---@return Observable
 function Observable:delay(time, scheduler)
+	assert(scheduler)
 	time = type(time) ~= 'function' and util.constant(time) or time
 
 	return Observable.create(function(observer)

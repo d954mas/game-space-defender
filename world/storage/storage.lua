@@ -20,6 +20,7 @@ Storage.LOCAL = CONSTANTS.VERSION_IS_DEV and CONSTANTS.PLATFORM_IS_PC and true -
 ---@param world World
 function Storage:initialize(world)
     checks("?","class:World")
+    self.world = world
     self:_load_storage()
     self.prev_save_time = os.clock()
     self.save_on_update = false
