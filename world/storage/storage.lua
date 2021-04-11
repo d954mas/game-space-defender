@@ -5,18 +5,21 @@ local OptionsStoragePart = require "world.storage.options_storage_part"
 local DebugStoragePart = require "world.storage.debug_storage_part"
 local ResourceStoragePart = require "world.storage.resource_storage_part"
 local HighscoreStoragePart = require "world.storage.highscore_storage_part"
+local GameStoragePart = require "world.storage.game_storage_part"
 
 local TAG = "Storage"
 
 ---@class Storage
 local Storage = COMMON.class("Storage")
 
-Storage.VERSION = 11
+Storage.VERSION = 13
 Storage.AUTOSAVE = 30 --seconds
 Storage.CLEAR = CONSTANTS.VERSION_IS_DEV and false --BE CAREFUL. Do not use in prod
 Storage.LOCAL = CONSTANTS.VERSION_IS_DEV and CONSTANTS.PLATFORM_IS_PC and true --BE CAREFUL. Do not use in prod
 
-function Storage:initialize()
+---@param world World
+function Storage:initialize(world)
+    checks("?","class:World")
     self:_load_storage()
     self.prev_save_time = os.clock()
     self.save_on_update = false
@@ -25,6 +28,7 @@ function Storage:initialize()
     self.debug = DebugStoragePart(self)
     self.resource = ResourceStoragePart(self)
     self.highscore = HighscoreStoragePart(self)
+    self.game = GameStoragePart(self)
 end
 
 function Storage:changed()
@@ -90,10 +94,13 @@ function Storage:_init_storage()
             music = false
         },
         resource = {
-            score = 0
+            money = 0
         },
         highscores = {
             0,0,0,0,0
+        },
+        game = {
+            firerate_level = 1,
         },
         version = Storage.VERSION
     }
@@ -104,7 +111,7 @@ function Storage:_migration()
     if (self.data.version < Storage.VERSION) then
         COMMON.i(string.format("migrate from:%s to %s", self.data.version, Storage.VERSION), TAG)
 
-        if (self.data.version < 11) then
+        if (self.data.version < 13) then
             self:_init_storage()
         end
 

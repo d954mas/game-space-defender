@@ -9,12 +9,13 @@ function Storage:initialize(...)
     self.resource = self.storage.data.resource
 end
 
-function Storage:score_change(v)
+function Storage:money_add(v)
     checks("?","number")
-    self.resource.score = math.max(self.resource.score+v,0)
+    assert(v > 0)
+    self.resource.score = math.max(self.resource.money+v,0)
     self:save_and_changed()
 end
-function Storage:score_get()
+function Storage:money_get()
     return self.resource.score
 end
 

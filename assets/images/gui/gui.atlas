@@ -54,6 +54,10 @@ images {
   image: "/assets/images/gui/ui/btn_pause.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
+images {
+  image: "/gooey/themes/dirtylarry/images/button_normal.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
 margin: 0
 extrude_borders: 2
 inner_padding: 0

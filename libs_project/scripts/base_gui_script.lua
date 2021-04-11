@@ -26,8 +26,12 @@ function Script:init(config)
     if(self.config.context_name) then COMMON.CONTEXT:register(self.config.context_name, self) end
     self:bind_vh()
     self.subscription = COMMON.RX.SubscriptionsStorage()
+    self.subscription:add(COMMON.EVENT_BUS:subscribe(COMMON.EVENTS.STORAGE_CHANGED):subscribe(function ()
+        self:on_storage_changed()
+    end))
     self.scheduler = COMMON.RX.CooperativeScheduler.create()
     self:init_gui()
+    self:on_storage_changed()
     if(self.config.input) then COMMON.input_acquire() end
 end
 
@@ -35,6 +39,9 @@ function Script:update(dt)
     self.scheduler:update(dt)
 end
 
+function Script:on_storage_changed()
+
+end
 
 function Script:final()
     self.subscription:unsubscribe()

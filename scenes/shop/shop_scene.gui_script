@@ -5,33 +5,37 @@ local SM = require "libs_project.sm"
 
 local BaseGuiScript = require "libs_project.scripts.base_gui_script"
 
----@class GameSceneGuiScript:ScriptMain
-local Script = COMMON.class("ShopSceneGuiScript",BaseGuiScript)
+---@class ShopSceneGuiScript:ScriptMain
+local Script = COMMON.class("ShopSceneGuiScript", BaseGuiScript)
 
 function Script:init()
-   BaseGuiScript.init(self,{context_name = nil})
+    BaseGuiScript.init(self, { context_name = nil })
 end
 
 function Script:bind_vh()
-   self.vh = {
-
-   }
-   self.views = {
-    
-   }
+    self.vh = {
+        lbl_money = gui.get_node("lbl_money"),
+        btn_buy_firerate_lbl = gui.get_node("btn_buy_firerate/label")
+    }
+    self.views = {
+        btn_buy_firerate = GUI.ButtonBase("btn_buy_firerate")
+    }
 end
 
 function Script:init_gui()
-   BaseGuiScript.init_gui(self)
+    BaseGuiScript.init_gui(self)
 end
 
 function Script:update(dt)
- 
+    BaseGuiScript.update(self)
 end
 
-function Script:on_input(action_id,action)
-  
+function Script:on_storage_changed()
+
 end
 
+function Script:on_input(action_id, action)
+
+end
 
 COMMON.N28S.register(Script())

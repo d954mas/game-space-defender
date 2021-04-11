@@ -4,8 +4,8 @@ fonts {
   font: "/assets/fonts/roboto_bold.font"
 }
 textures {
-  name: "dirtylarry"
-  texture: "/gooey/themes/dirtylarry/images/dirtylarry.atlas"
+  name: "gui"
+  texture: "/assets/images/gui/gui.atlas"
 }
 background_color {
   x: 0.0
@@ -46,7 +46,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "dirtylarry/transparent1px"
+  texture: "gui/empty"
   id: "root"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -100,7 +100,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "dirtylarry/button_normal"
+  texture: "gui/button_normal"
   id: "bg"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE

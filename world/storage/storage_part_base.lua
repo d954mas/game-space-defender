@@ -7,6 +7,7 @@ local Part = COMMON.class("StoragePartBase")
 function Part:initialize(storage)
     checks("?", "class:Storage")
     self.storage = storage
+    self.world = storage.world
 end
 
 function Part:save(force)
