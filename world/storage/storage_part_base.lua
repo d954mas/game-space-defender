@@ -17,8 +17,8 @@ function Part:changed()
     self.storage:changed()
 end
 
-function Part:save_and_changed(force_save)
-    self:save(force_save)
+function Part:save_and_changed()
+    self:save()
     self:changed()
 end
 

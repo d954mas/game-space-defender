@@ -18,10 +18,10 @@ function Cameras:init()
 		fov = 1,
 		ortho_scale = 1,
 		fixed_aspect_ratio = false ,
-		aspect_ratio = vmath.vector3(960,540, 0),
+		aspect_ratio = vmath.vector3(540,960, 0),
 		use_view_area = true,
 		view_area = vmath.vector3(960,540,0),
-		scale_mode =  Camera.SCALEMODE.FIXEDAREA
+		scale_mode =  Camera.SCALEMODE.FIXEDWIDTH
 	})
 	self.current = self.game_camera
 	self:window_resized()

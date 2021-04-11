@@ -26,6 +26,10 @@ end
 
 function Script:init_gui()
    BaseGuiScript.init_gui(self)
+
+   self.views.btn_highscore:set_input_listener(function ()
+      SM:show(SM.SCENES.HIGHSCORE)
+   end)
 end
 
 function Script:update(dt)

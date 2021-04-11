@@ -12,7 +12,7 @@ end
 function Debug:developer_is() return self.debug.developer end
 function Debug:developer_set(enable)
     self.debug.developer = enable
-    self:save_and_changed(true)
+    self:save_and_changed()
 end
 
 return Debug

@@ -81,7 +81,8 @@ function Script:initialize()
 end
 
 function Script:_set_go(go)
-	assert(not self._go)
+	pprint(self._go)
+	assert(not self._go,"already register")
 	self._go = assert(go)
 	self:__register()
 	self:init()

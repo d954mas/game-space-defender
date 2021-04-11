@@ -12,7 +12,7 @@ end
 function Storage:score_change(v)
     checks("?","number")
     self.resource.score = math.max(self.resource.score+v,0)
-    self:save_and_changed(true)
+    self:save_and_changed()
 end
 function Storage:score_get()
     return self.resource.score

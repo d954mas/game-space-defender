@@ -13,7 +13,7 @@ end
 function Options:sound_set(enable)
     checks("?","boolean")
     self.options.sound = enable
-    self:save_and_changed(true)
+    self:save_and_changed()
 end
 
 function Options:sound_get() return self.options.sound end
@@ -21,7 +21,7 @@ function Options:sound_get() return self.options.sound end
 function Options:music_set(enable)
     checks("?","boolean")
     self.options.music = enable
-    self:save_and_changed(true)
+    self:save_and_changed()
 end
 function Options:music_get() return self.options.music end
 
