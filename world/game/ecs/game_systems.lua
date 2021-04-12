@@ -9,26 +9,25 @@ local require_old = require
 local require_no_cache
 local require_no_cache_name
 require_no_cache = function(k)
-	require = require_old
-	local m = require_old(k)
-	if(k == require_no_cache_name)then
-		print("load require no_cache_name:" .. k)
-		package.loaded[k] = nil
-	end
-	require_no_cache_name = nil
-	require = require_no_cache
-	return m
+    require = require_old
+    local m = require_old(k)
+    if (k == require_no_cache_name) then
+        print("load require no_cache_name:" .. k)
+        package.loaded[k] = nil
+    end
+    require_no_cache_name = nil
+    require = require_no_cache
+    return m
 end
 
 local creator = function(name)
-	return function (...)
-		require_no_cache_name = name
-		local system = require_no_cache(name)
-		if(system.init) then system.init(system,...) end
-		return system
-	end
+    return function(...)
+        require_no_cache_name = name
+        local system = require_no_cache(name)
+        if (system.init) then system.init(system, ...) end
+        return system
+    end
 end
-
 
 require = creator
 
@@ -38,7 +37,7 @@ M.DebugDrawPhysicsBodiesSystem = require "world.game.ecs.systems.debug_draw_phys
 M.InputSystem = require "world.game.ecs.systems.input_system"
 M.MoveSystem = require "world.game.ecs.systems.move_system"
 M.PhysicsUpdateBodyPositionSystem = require "world.game.ecs.systems.physics_update_body_position_system"
-
+M.DrawPlayerSystem = require "world.game.ecs.systems.draw_player_system"
 
 require = require_old
 

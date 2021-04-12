@@ -1,5 +1,7 @@
 local COMMON = require "libs.common"
 local EcsGame = require "world.game.ecs.game_ecs"
+local CommandExecutor = require "world.commands.command_executor"
+local COMMANDS = require "world.game.command.commands"
 
 ---@class GameWorld
 local GameWorld = COMMON.class("GameWorld")
@@ -8,16 +10,23 @@ local GameWorld = COMMON.class("GameWorld")
 function GameWorld:initialize(world)
     self.world = assert(world)
     self.ecs_game = EcsGame(self.world)
+    self.command_executor = CommandExecutor()
 
+end
+
+function GameWorld:level_start()
+    self.command_executor:command_add(COMMANDS.PlayerAppearedCommand())
 end
 
 function GameWorld:init()
     physics3d.init()
     self.ecs_game:add_systems()
+    self:level_start()
 end
 
 
 function GameWorld:update(dt)
+    self.command_executor:act(dt)
     self.ecs_game:update(dt)
     --do not update physics.
     --update it only when touch

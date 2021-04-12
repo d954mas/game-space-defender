@@ -19,6 +19,8 @@ function EcsWorld:initialize(world)
 	self.ecs.on_entity_updated = function(_, ...) self.entities:on_entity_updated(...) end
 	self.ecs.on_entity_removed = function(_, ...) self.entities:on_entity_removed(...) end
 
+	self.player = Entities.create_player()
+	self:add_entity(self.player)
 end
 
 function EcsWorld:find_by_id(id)
@@ -33,6 +35,9 @@ function EcsWorld:add_systems()
 	local draw_debug_physics = SYSTEMS.DebugDrawPhysicsBodiesSystem()
 	draw_debug_physics.active = false
 	self.ecs:addSystem(draw_debug_physics)
+
+
+	self.ecs:addSystem(SYSTEMS.DrawPlayerSystem())
 
 	self.ecs:addSystem(SYSTEMS.AutoDestroySystem())
 end

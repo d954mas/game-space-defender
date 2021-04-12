@@ -30,12 +30,6 @@ local TAG = "Entities"
 
 ---@class EntityGame
 ---@field tag string tag can search entity by tag
----@field square boolean is square.
----@field square_type string
----@field square_part boolean is square part for explosion
----@field square_size Size is square_size.
----@field square_go userdata go.
----@field square_hit_score SquareHitScore
 ---@field position vector3
 ---@field move_curve_config MoveCurveConfig
 ---@field input_info InputInfo
@@ -46,6 +40,8 @@ local TAG = "Entities"
 ---@field physics_dynamic boolean|nil dynamic bodies update their positions
 ---@field debug_physics_body_go DebugPhysicsBodyGo|nil
 ---@field movement EntityMovement
+---@field player boolean
+---@field player_go url
 ---@field actions Action[]
 
 ---@class ENTITIES
@@ -79,14 +75,6 @@ function Entities:on_entity_removed(e)
     if (e.tag) then
         self.by_tag[e.tag] = nil
     end
-    if (e.square_go) then
-        go.delete(e.square_go.root, true)
-        e.square_go = nil
-    end
-    if (e.square_part_go) then
-        go.delete(e.square_part_go.root, true)
-        e.square_part_go = nil
-    end
     if (e.debug_physics_body_go) then
         go.delete(e.debug_physics_body_go.root, true)
         e.debug_physics_body_go = nil
@@ -116,6 +104,18 @@ end
 ---@return EntityGame
 function Entities:create_input(action_id, action)
     return { input_info = { action_id = action_id, action = action }, auto_destroy = true }
+end
+
+---@return EntityGame
+function Entities:create_player()
+    ---@type EntityGame
+    local player = {}
+    player.player = true
+    player.position = vmath.vector3(0, -50, 0)
+    player.actions = {}
+    player.player_go = msg.url("game_scene:/player")
+
+    return player
 end
 
 return Entities
