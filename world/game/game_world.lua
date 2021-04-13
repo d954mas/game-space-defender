@@ -12,11 +12,13 @@ function GameWorld:initialize(world)
     self.world = assert(world)
     self.ecs_game = EcsGame(self.world)
     self.command_executor = CommandExecutor()
+    self.score = 0
     self.level = 1
     self.state = ENUMS.GAME_STATE.PREPARE
 end
 
 function GameWorld:level_start()
+    self.score = 0
     self.level = 1
     self.state = ENUMS.GAME_STATE.PREPARE
     self.command_executor:command_add(COMMANDS.PlayerAppearedCommand())
@@ -28,6 +30,18 @@ function GameWorld:level_next()
     self.level = self.level + 1
     self.command_executor:command_add(COMMANDS.PlayerAppearedCommand())
     self.command_executor:command_add(COMMANDS.EnemiesSpawnCommand())
+end
+
+---@param e EntityGame
+function GameWorld:enemy_on_kill(e)
+    assert(e.enemy)
+    if(self.state == ENUMS.GAME_STATE.RUN)then
+        if (e.enemy_type == ENUMS.ENEMY_TYPE.BASE) then
+            self.score = self.score + 100
+        elseif (e.enemy_type == ENUMS.ENEMY_TYPE.SHOOTING) then
+            self.score = self.score + 200
+        end
+    end
 end
 
 function GameWorld:init()

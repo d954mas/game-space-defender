@@ -22,7 +22,8 @@ function System:handle(e, normal, distance)
     assert(e);
     assert(normal);
     assert(distance)
-    self.world:addEntity(self.world.game_world.game.ecs_game.entities:create_explosion(e.position.x, e.position.y-12))
+    self.world:addEntity(self.world.game_world.game.ecs_game.entities:create_explosion(e.position.x, e.position.y - 12))
+    self.world.game_world.game:enemy_on_kill(e)
     self.world:removeEntity(e)
 
 end
