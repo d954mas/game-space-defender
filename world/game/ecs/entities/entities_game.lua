@@ -23,8 +23,15 @@ local TAG = "Entities"
 ---@field hit_squares EntityGame[]
 
 ---@class EntityMovement
+---@field acceleration vector3
 ---@field velocity vector3
----@field speed number
+---@field direction vector3
+---@field to_point nil|vector3
+---@field max_speed number
+---@field accel number
+---@field deaccel number
+---@field ignore_y boolean can't move up(hero)
+---@field gravity boolean use gravity
 
 
 
@@ -35,6 +42,7 @@ local TAG = "Entities"
 ---@field input_info InputInfo
 ---@field auto_destroy_delay number
 ---@field auto_destroy boolean
+---@field physics_body_origin vector3
 ---@field physics_body NativePhysicsRectBody base collision. Not rotated.
 ---@field physics_static boolean|nil static bodies can't move.
 ---@field physics_dynamic boolean|nil dynamic bodies update their positions
@@ -112,9 +120,19 @@ function Entities:create_player()
     local player = {}
     player.player = true
     player.position = vmath.vector3(0, -50, 0)
+    player.movement = {
+        velocity = vmath.vector3(0, 0, 0),
+        direction = vmath.vector3(0, 0, 0),
+        max_speed = 270,
+        acceleration = 1000,
+        deaccel = 1000,
+        ignore_y = true,
+        gravity = true
+    }
     player.actions = {}
     player.physics_dynamic = true
-    player.physics_body = physics3d.create_rect(0, -50, 0, 68, 60, 20, false,
+    player.physics_body_origin = vmath.vector3(0,6,0)
+    player.physics_body = physics3d.create_rect(0, -50, 0, 64, 36, 20, false,
     self.physic_mask.PLAYER,self.physic_groups.PLAYER)
     player.player_go = msg.url("game_scene:/player")
 
