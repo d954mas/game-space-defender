@@ -35,6 +35,7 @@ function EcsWorld:add_systems()
     self.ecs:addSystem(SYSTEMS.DebugDrawPhysicsBodiesSystem())
 
     self.ecs:addSystem(SYSTEMS.DrawPlayerSystem())
+    self.ecs:addSystem(SYSTEMS.DrawEnemySystem())
 
     self.ecs:addSystem(SYSTEMS.AutoDestroySystem())
 end

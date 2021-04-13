@@ -1,6 +1,9 @@
-local COMMON = require "libs.common"
-
 local ENUMS = {}
 
+ENUMS.ENEMY_TYPE = {
+    BASE = "BASE",
+    SHOOTING = "SHOOTING"
+}
 
-return COMMON.LUME.read_only(ENUMS)
+
+return ENUMS

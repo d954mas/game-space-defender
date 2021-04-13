@@ -69,6 +69,8 @@ function System:process(e, dt)
     -- calculate the translation this frame by integrating the velocity
     local dp = (v0 + e.movement.velocity) * dt * 0.5
 
+    dp.y = e.movement.direction.y * e.movement.max_speed * dt
+
 
     if (e.movement.to_point) then
         local max_move_x = e.movement.to_point.x - e.position.x

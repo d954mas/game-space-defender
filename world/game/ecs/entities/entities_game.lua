@@ -1,6 +1,6 @@
 local COMMON = require "libs.common"
 local TAG = "Entities"
-
+local ENUMS = require "world.enums.enums"
 
 ---@class MoveCurveConfig
 ---@field curve Curve
@@ -50,6 +50,9 @@ local TAG = "Entities"
 ---@field movement EntityMovement
 ---@field player boolean
 ---@field player_go url
+---@field enemy boolean
+---@field enemy_go url
+---@field enemy_type string
 ---@field actions Action[]
 
 
@@ -99,6 +102,16 @@ function Entities:on_entity_removed(e)
     if (e.physics_body) then
         physics3d.destroy_rect(e.physics_body)
     end
+
+    if (e.player_go) then
+        go.delete(e.player_go, true)
+        e.player_go = nil
+    end
+
+    if (e.enemy_go) then
+        go.delete(e.enemy_go, true)
+        e.enemy_go = nil
+    end
 end
 
 ---@param e EntityGame
@@ -145,6 +158,53 @@ function Entities:create_player()
             self.physic_mask.PLAYER, self.physic_groups.PLAYER)
 
     return player
+end
+
+---@return EntityGame
+function Entities:create_enemy_base(x, y)
+    ---@type EntityGame
+    local e = {}
+    e.enemy = true
+    e.position = vmath.vector3(x, y, 0.1)
+    e.enemy_type = ENUMS.ENEMY_TYPE.BASE
+    e.movement = {
+        velocity = vmath.vector3(0, -1, 0),
+        direction = vmath.vector3(0, -1, 0),
+        max_speed = 200,
+        acceleration = 1000,
+        deaccel = 1000,
+        gravity = false,
+    }
+    e.actions = {}
+    e.physics_dynamic = true
+    e.physics_body_origin = vmath.vector3(0, 6, 0)
+    e.physics_body = physics3d.create_rect(e.position.x, e.position.y, 0, 64, 36, 20, false,
+            self.physic_mask.ENEMY, self.physic_groups.ENEMY)
+
+    return e
+end
+
+function Entities:create_enemy_shooting(x, y)
+    ---@type EntityGame
+    local e = {}
+    e.enemy = true
+    e.position = vmath.vector3(x, y, 0.2)
+    e.enemy_type = ENUMS.ENEMY_TYPE.SHOOTING
+    e.movement = {
+        velocity = vmath.vector3(0, 0, 0),
+        direction = vmath.vector3(0, -1, 0),
+        max_speed = 300,
+        acceleration = 1000,
+        deaccel = 1000,
+        gravity = false,
+    }
+    e.actions = {}
+    e.physics_dynamic = true
+    e.physics_body_origin = vmath.vector3(0, 6, 0)
+    e.physics_body = physics3d.create_rect(e.position.x, e.position.y, 0, 64, 36, 20, false,
+            self.physic_mask.ENEMY, self.physic_groups.ENEMY)
+
+    return e
 end
 
 return Entities
