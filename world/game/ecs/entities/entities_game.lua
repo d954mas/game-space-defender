@@ -44,6 +44,7 @@ end)
 
 
 ---@class EntityGame
+---@field _in_world boolean is entity in world
 ---@field tag string tag can search entity by tag
 ---@field position vector3
 ---@field move_curve_config MoveCurveConfig
@@ -79,6 +80,7 @@ function Entities:initialize(world)
     self.world = world
     ---@type EntityGame[]
     self.by_tag = {}
+    self.enemies = 0
     self.physic_groups = {
         PLAYER = bit.tobit(1),
         ENEMY = bit.tobit(2),
@@ -101,6 +103,7 @@ end
 --region ecs callbacks
 ---@param e EntityGame
 function Entities:on_entity_removed(e)
+    e._in_world = false
     if (e.tag) then
         self.by_tag[e.tag] = nil
     end
@@ -135,14 +138,22 @@ function Entities:on_entity_removed(e)
         go.delete(e.explosion_go, true)
         e.explosion_go = nil
     end
+
+    if (e.enemy) then
+        self.enemies = self.enemies - 1
+    end
 end
 
 ---@param e EntityGame
 function Entities:on_entity_added(e)
+    e._in_world = true
     if (e.tag) then
         COMMON.i("entity with tag:" .. e.tag, TAG)
         assert(not self.by_tag[e.tag])
         self.by_tag[e.tag] = e
+    end
+    if (e.enemy) then
+        self.enemies = self.enemies + 1
     end
 end
 

@@ -1,6 +1,7 @@
 local COMMON = require "libs.common"
 local ACTIONS = require "libs.actions.actions"
 local CAMERAS = require "libs_project.cameras"
+local ENUMS = require "world.enums.enums"
 local CommandBase = require "world.commands.command_base"
 
 ---@class EnemiesSpawnCommand:CommandBase
@@ -22,7 +23,8 @@ function EnemiesSpawnCommand:act(dt)
         y = y - (self.world.balance.game_area.height-CAMERAS.game_camera.view_area.y)+100
         self.world.game.ecs_game:add_entity(self.world.game.ecs_game.entities:create_enemy_shooting(x,y))
     end
-
+    coroutine.yield()
+    self.world.game.state = ENUMS.GAME_STATE.RUN
 end
 
 return EnemiesSpawnCommand

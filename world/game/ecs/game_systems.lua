@@ -58,6 +58,8 @@ M.PhysicsCollisionPlayerProjectileSystem = require "world.game.ecs.systems.physi
 M.PhysicsCollisionPlayerSystem = require "world.game.ecs.systems.physics_collision_player_system"
 M.PhysicsUpdateSystem = require "world.game.ecs.systems.physics_update_system"
 
+M.GameCheckStateSystem = require "world.game.ecs.systems.game_check_state_system"
+
 require = require_old
 
 -- luacheck: pop

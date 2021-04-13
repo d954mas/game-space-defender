@@ -37,7 +37,6 @@ function EcsWorld:add_systems()
     self.ecs:addSystem(SYSTEMS.EnemyProjectileCheckPositionSystem())
     self.ecs:addSystem(SYSTEMS.PlayerProjectileCheckPositionSystem())
 
-
     self.ecs:addSystem(SYSTEMS.PhysicsUpdateBodyPositionSystem())
 
     self.ecs:addSystem(SYSTEMS.PhysicsUpdateSystem())
@@ -54,6 +53,8 @@ function EcsWorld:add_systems()
     self.ecs:addSystem(SYSTEMS.DrawEnemySystem())
     self.ecs:addSystem(SYSTEMS.DrawExplosionSystem())
 
+    self.ecs:addSystem(SYSTEMS.GameCheckStateSystem())
+
     self.ecs:addSystem(SYSTEMS.AutoDestroySystem())
 end
 
@@ -69,7 +70,6 @@ end
 function EcsWorld:clear()
     self.ecs:clear()
     self.ecs:refresh()
-    self.draw_debug_physics = nil
 end
 
 function EcsWorld:add(...)
