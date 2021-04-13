@@ -1,6 +1,6 @@
 local SM = require "libs.sm.scene_manager"
 
---MAIN SCENE MANAGER
+---@class SceneManagerProject:SceneManager
 local sm = SM()
 
 local scenes = {

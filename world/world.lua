@@ -3,6 +3,7 @@ local Storage = require "world.storage.storage"
 local GameWorld = require "world.game.game_world"
 local CommandExecutor = require "world.commands.command_executor"
 local Balance = require "world.balance.balance"
+local Ads = require "libs.ads.ads"
 
 local TAG = "WORLD"
 ---@class World
@@ -14,6 +15,7 @@ function M:initialize()
     self.command_executor = CommandExecutor()
     self.balance = Balance(self)
     self.game = GameWorld(self)
+    self.ads = Ads(self)
 end
 
 function M:update(dt)
