@@ -12,8 +12,9 @@ function M:initialize()
     COMMON.i("init", TAG)
     self.storage = Storage(self)
     self.command_executor = CommandExecutor()
-    self.game = GameWorld(self)
     self.balance = Balance(self)
+    self.game = GameWorld(self)
+
 end
 
 function M:update(dt)

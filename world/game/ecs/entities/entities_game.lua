@@ -33,6 +33,9 @@ local ENUMS = require "world.enums.enums"
 ---@field ignore_y boolean can't move up(hero)
 ---@field gravity boolean use gravity
 
+---@class ShootingConfig
+---@field firerate vector3
+---@field shoot_delay number
 
 
 ---@class EntityGame
@@ -53,30 +56,29 @@ local ENUMS = require "world.enums.enums"
 ---@field enemy boolean
 ---@field enemy_go url
 ---@field enemy_type string
+---@field player_projectile boolean
+---@field player_projectile_go url
 ---@field actions Action[]
+---@field shooting_config ShootingConfig[]
 
-
-local FACTORIES = {
-    player_projectile = msg.url("game_scene/factories#player_projectile"),
-    enemy_base = msg.url("game_scene/factories#enemy_base"),
-    enemy_shooting = msg.url("game_scene/factories#enemy_shooting"),
-    enemy_shooting_projectile = msg.url("game_scene/factories#enemy_shooting_projectile"),
-    explosion = msg.url("game_scene/factories#explosion"),
-}
 
 ---@class ENTITIES
 local Entities = COMMON.class("Entities")
 
-function Entities:initialize()
+---@param world World
+function Entities:initialize(world)
+    self.world = world
     ---@type EntityGame[]
     self.by_tag = {}
     self.physic_groups = {
         PLAYER = bit.tobit(1),
-        ENEMY = bit.tobit(2)
+        ENEMY = bit.tobit(2),
+        PLAYER_PROJECTILE = bit.tobit(4)
     }
     self.physic_mask = {
         PLAYER = bit.bor(self.physic_groups.ENEMY),
-        ENEMY = bit.bor(self.physic_groups.PLAYER)
+        PLAYER_PROJECTILE = bit.bor(self.physic_groups.ENEMY),
+        ENEMY = bit.bor(self.physic_groups.PLAYER, self.physic_groups.PLAYER_PROJECTILE)
     }
 end
 
@@ -84,10 +86,6 @@ function Entities:find_by_tag(tag)
     return self.by_tag[assert(tag)]
 end
 
----@param ecs ECSWorld
-function Entities:set_ecs_world(ecs)
-    self.ecs_world = assert(ecs)
-end
 
 --region ecs callbacks
 ---@param e EntityGame
@@ -111,6 +109,11 @@ function Entities:on_entity_removed(e)
     if (e.enemy_go) then
         go.delete(e.enemy_go, true)
         e.enemy_go = nil
+    end
+
+    if (e.player_projectile_go) then
+        go.delete(e.player_projectile_go, true)
+        e.player_projectile_go = nil
     end
 end
 
@@ -156,8 +159,35 @@ function Entities:create_player()
     player.physics_body_origin = vmath.vector3(0, 6, 0)
     player.physics_body = physics3d.create_rect(0, -50, 0, 64, 36, 20, false,
             self.physic_mask.PLAYER, self.physic_groups.PLAYER)
+    player.shooting_config = {
+        firerate = self.world.balance:firerate_get(),
+        shoot_delay = self.world.balance:firerate_get()
+    }
 
     return player
+end
+
+---@return EntityGame
+function Entities:create_player_projectile(x, y)
+    ---@type EntityGame
+    local e = {}
+    e.player_projectile = true
+    e.position = vmath.vector3(x, y, 0)
+    e.movement = {
+        velocity = vmath.vector3(0, 0, 0),
+        direction = vmath.vector3(0, 1, 0),
+        max_speed = 250,
+        acceleration = 1000,
+        deaccel = 1000,
+        ignore_y = true,
+        gravity = false
+    }
+    e.physics_dynamic = true
+    e.physics_body_origin = vmath.vector3(0, 6, 0)
+    e.physics_body = physics3d.create_rect(e.position.x, e.position.y, 0, 34, 60, 20, false,
+            self.physic_mask.PLAYER, self.physic_groups.PLAYER)
+
+    return e
 end
 
 ---@return EntityGame

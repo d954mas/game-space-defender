@@ -30,12 +30,17 @@ function EcsWorld:add_systems()
     self.ecs:addSystem(SYSTEMS.ActionsUpdateSystem())
     self.ecs:addSystem(SYSTEMS.InputSystem())
     self.ecs:addSystem(SYSTEMS.MoveSystem())
+    self.ecs:addSystem(SYSTEMS.PlayerShootingSystem())
     self.ecs:addSystem(SYSTEMS.EnemyCheckPositionSystem())
+    self.ecs:addSystem(SYSTEMS.PlayerProjectileCheckPositionSystem())
+
+
     self.ecs:addSystem(SYSTEMS.PhysicsUpdateBodyPositionSystem())
 
     self.ecs:addSystem(SYSTEMS.DebugDrawPhysicsBodiesSystem())
 
     self.ecs:addSystem(SYSTEMS.DrawPlayerSystem())
+    self.ecs:addSystem(SYSTEMS.DrawPlayerProjectileSystem())
     self.ecs:addSystem(SYSTEMS.DrawEnemySystem())
 
     self.ecs:addSystem(SYSTEMS.AutoDestroySystem())

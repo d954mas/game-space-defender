@@ -15,7 +15,7 @@ end
 
 function Balance:firerate_get()
     local level = self.world.storage.game:firerate_level_get()
-    return 	0.25 * math.pow(0.75, level);
+    return 	0.5 * math.pow(0.85, level-1);
 end
 
 function Balance:firerate_level_cost_upgrade_get()
