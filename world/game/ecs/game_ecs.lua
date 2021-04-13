@@ -41,6 +41,7 @@ function EcsWorld:add_systems()
     self.ecs:addSystem(SYSTEMS.PhysicsUpdateBodyPositionSystem())
 
     self.ecs:addSystem(SYSTEMS.PhysicsUpdateSystem())
+    self.ecs:addSystem(SYSTEMS.PhysicsCollisionPlayerSystem())
     self.ecs:addSystem(SYSTEMS.PhysicsCollisionEnemySystem())
     self.ecs:addSystem(SYSTEMS.PhysicsCollisionEnemyProjectileSystem())
     self.ecs:addSystem(SYSTEMS.PhysicsCollisionPlayerProjectileSystem())
