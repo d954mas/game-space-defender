@@ -36,6 +36,8 @@ function EcsWorld:add_systems()
     self.ecs:addSystem(SYSTEMS.MoveSystem())
     self.ecs:addSystem(SYSTEMS.PlayerShootingSystem())
     self.ecs:addSystem(SYSTEMS.EnemyShootingSystem())
+
+    self.ecs:addSystem(SYSTEMS.PlayerCheckPositionSystem())
     self.ecs:addSystem(SYSTEMS.EnemyCheckPositionSystem())
     self.ecs:addSystem(SYSTEMS.EnemyProjectileCheckPositionSystem())
     self.ecs:addSystem(SYSTEMS.PlayerProjectileCheckPositionSystem())

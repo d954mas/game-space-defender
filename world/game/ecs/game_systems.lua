@@ -40,6 +40,7 @@ M.MoveSystem = require "world.game.ecs.systems.move_system"
 
 M.PlayerShootingSystem = require "world.game.ecs.systems.player_shooting_system"
 M.PlayerProjectileCheckPositionSystem = require "world.game.ecs.systems.player_projectile_check_position_system"
+M.PlayerCheckPositionSystem = require "world.game.ecs.systems.player_check_position_system"
 
 M.EnemyCheckPositionSystem = require "world.game.ecs.systems.enemy_check_position_system"
 M.EnemyProjectileCheckPositionSystem = require "world.game.ecs.systems.enemy_projectile_check_position_system"
