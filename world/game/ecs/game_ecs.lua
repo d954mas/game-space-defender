@@ -29,6 +29,7 @@ end
 function EcsWorld:add_systems()
     self.ecs:addSystem(SYSTEMS.ActionsUpdateSystem())
     self.ecs:addSystem(SYSTEMS.InputSystem())
+    self.ecs:addSystem(SYSTEMS.InputMovePlayerSystem())
     self.ecs:addSystem(SYSTEMS.MoveSystem())
     self.ecs:addSystem(SYSTEMS.PlayerShootingSystem())
     self.ecs:addSystem(SYSTEMS.EnemyShootingSystem())

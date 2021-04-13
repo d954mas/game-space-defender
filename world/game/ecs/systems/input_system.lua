@@ -1,5 +1,6 @@
 local ECS = require 'libs.ecs'
 local COMMON = require "libs.common"
+local INPUT = require "libs.input_receiver"
 
 ---@class InputSystem:ECSSystemProcessing
 local System = ECS.processingSystem()
@@ -8,10 +9,7 @@ System.name = "InputSystem"
 
 function System:init()
     self.input_handler = COMMON.INPUT()
-    --self.input_handler:add_mouse(self.input_mouse_move)
-    --self.input_handler:add(COMMON.HASHES.INPUT.INTERACT, self.input_interact, true)
 end
-
 
 ---@param e EntityGame
 function System:process(e, dt)
