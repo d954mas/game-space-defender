@@ -12,11 +12,12 @@ function GameWorld:initialize(world)
     physics3d.init()
     self.ecs_game = EcsGame(self.world)
     self.command_executor = CommandExecutor()
-
+    self.level = 1
 end
 
 function GameWorld:level_start()
     self.command_executor:command_add(COMMANDS.PlayerAppearedCommand())
+    self.command_executor:command_add(COMMANDS.EnemiesSpawnCommand())
 end
 
 function GameWorld:init()

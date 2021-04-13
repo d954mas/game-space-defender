@@ -23,5 +23,14 @@ function Balance:firerate_level_cost_upgrade_get()
     return math.ceil(1000*math.pow(1.5, level));
 end
 
+function Balance:level_enemy_base_count(level)
+    return level * 10
+end
+
+--- 0, 0, 2, 5, 7, 10
+function Balance:level_enemy_shooting_count(level)
+    return math.max(0, math.floor(self:level_enemy_base_count(level)/10-2) * 2.5)
+end
+
 
 return Balance

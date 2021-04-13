@@ -52,6 +52,15 @@ local TAG = "Entities"
 ---@field player_go url
 ---@field actions Action[]
 
+
+local FACTORIES = {
+    player_projectile = msg.url("game_scene/factories#player_projectile"),
+    enemy_base = msg.url("game_scene/factories#enemy_base"),
+    enemy_shooting = msg.url("game_scene/factories#enemy_shooting"),
+    enemy_shooting_projectile = msg.url("game_scene/factories#enemy_shooting_projectile"),
+    explosion = msg.url("game_scene/factories#explosion"),
+}
+
 ---@class ENTITIES
 local Entities = COMMON.class("Entities")
 
@@ -131,10 +140,9 @@ function Entities:create_player()
     }
     player.actions = {}
     player.physics_dynamic = true
-    player.physics_body_origin = vmath.vector3(0,6,0)
+    player.physics_body_origin = vmath.vector3(0, 6, 0)
     player.physics_body = physics3d.create_rect(0, -50, 0, 64, 36, 20, false,
-    self.physic_mask.PLAYER,self.physic_groups.PLAYER)
-    player.player_go = msg.url("game_scene:/player")
+            self.physic_mask.PLAYER, self.physic_groups.PLAYER)
 
     return player
 end
