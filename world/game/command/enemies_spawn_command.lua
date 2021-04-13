@@ -14,7 +14,7 @@ function EnemiesSpawnCommand:act(dt)
         local x = math.random(-270+half_w,270-half_w)
         local y = math.random(self.world.balance.game_area.height,self.world.balance.game_area.height*2)
         y = y - (self.world.balance.game_area.height-CAMERAS.game_camera.view_area.y)+100
-        self.world.game.ecs_game:add_entity(self.world.game.ecs_game.entities:create_enemy_shooting(x,y))
+        self.world.game.ecs_game:add_entity(self.world.game.ecs_game.entities:create_enemy_base(x,y))
     end
 
     for i=1, self.world.balance:level_enemy_shooting_count(level) do
@@ -23,7 +23,7 @@ function EnemiesSpawnCommand:act(dt)
         y = y - (self.world.balance.game_area.height-CAMERAS.game_camera.view_area.y)+100
         self.world.game.ecs_game:add_entity(self.world.game.ecs_game.entities:create_enemy_shooting(x,y))
     end
-    coroutine.yield()
+    self.world.game.ecs_game.ecs:refresh()
     self.world.game.state = ENUMS.GAME_STATE.RUN
 end
 

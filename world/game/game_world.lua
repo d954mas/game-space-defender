@@ -10,7 +10,6 @@ local GameWorld = COMMON.class("GameWorld")
 ---@param world World
 function GameWorld:initialize(world)
     self.world = assert(world)
-    physics3d.init()
     self.ecs_game = EcsGame(self.world)
     self.command_executor = CommandExecutor()
     self.level = 1
@@ -18,11 +17,22 @@ function GameWorld:initialize(world)
 end
 
 function GameWorld:level_start()
+    self.level = 1
+    self.state = ENUMS.GAME_STATE.PREPARE
+    self.command_executor:command_add(COMMANDS.PlayerAppearedCommand())
+    self.command_executor:command_add(COMMANDS.EnemiesSpawnCommand())
+end
+
+function GameWorld:level_next()
+    self.state = ENUMS.GAME_STATE.PREPARE
+    self.level = self.level + 1
     self.command_executor:command_add(COMMANDS.PlayerAppearedCommand())
     self.command_executor:command_add(COMMANDS.EnemiesSpawnCommand())
 end
 
 function GameWorld:init()
+    physics3d.init()
+    self.ecs_game:player_init()
     self.ecs_game:add_systems()
     self:level_start()
 end
@@ -36,7 +46,6 @@ function GameWorld:update(dt)
 end
 
 function GameWorld:final()
-    pprint("GAME CLEAR")
     self.ecs_game:clear()
     physics3d.clear()
 end

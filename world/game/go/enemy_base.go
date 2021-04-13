@@ -2,7 +2,7 @@ embedded_components {
   id: "sprite"
   type: "sprite"
   data: "tile_set: \"/assets/images/game/game.atlas\"\n"
-  "default_animation: \"enemy_2\"\n"
+  "default_animation: \"enemy_1\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   ""

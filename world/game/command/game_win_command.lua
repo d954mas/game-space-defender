@@ -12,6 +12,12 @@ function GameWinCommand:act(dt)
     player.movement.direction.x = 0
     player.movement.direction.y = 1
     while (player.position.y < CAMERAS.game_camera.view_area.y+50) do  coroutine.yield() end
+    player.movement.direction.y = 0
+    player.movement.direction.x = 0
+
+    COMMON.coroutine_wait(0.5)
+
+    self.world.game:level_next()
 
 end
 

@@ -18,6 +18,9 @@ function EcsWorld:initialize(world)
     self.ecs.on_entity_added = function(_, ...) self.entities:on_entity_added(...) end
     self.ecs.on_entity_updated = function(_, ...) self.entities:on_entity_updated(...) end
     self.ecs.on_entity_removed = function(_, ...) self.entities:on_entity_removed(...) end
+end
+
+function EcsWorld:player_init()
     self.player = self.entities:create_player()
     self:add_entity(self.player)
 end
