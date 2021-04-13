@@ -171,6 +171,7 @@ function Entities:create_player()
         firerate = self.world.balance:firerate_get(),
         shoot_delay = self.world.balance:firerate_get()
     }
+    player.physics_body:set_user_data(player)
 
     return player
 end
@@ -194,7 +195,7 @@ function Entities:create_player_projectile(x, y)
     e.physics_body_origin = vmath.vector3(0, 6, 0)
     e.physics_body = physics3d.create_rect(e.position.x, e.position.y, 0, 34, 60, 20, false,
             self.physic_mask.PLAYER_PROJECTILE, self.physic_groups.PLAYER_PROJECTILE)
-
+    e.physics_body:set_user_data(e)
     return e
 end
 
@@ -215,6 +216,7 @@ function Entities:create_enemy_projectile(x, y)
     e.physics_body_origin = vmath.vector3(0, 0, 0)
     e.physics_body = physics3d.create_rect(e.position.x, e.position.y, 0, 18, 18, 18, false,
             self.physic_mask.ENEMY_PROJECTILE, self.physic_groups.ENEMY_PROJECTILE)
+    e.physics_body:set_user_data(e)
 
     return e
 end
@@ -238,6 +240,7 @@ function Entities:create_enemy_base(x, y)
     e.physics_body_origin = vmath.vector3(0, -6, 0)
     e.physics_body = physics3d.create_rect(e.position.x, e.position.y, 0, 64, 50, 20, false,
             self.physic_mask.ENEMY, self.physic_groups.ENEMY)
+    e.physics_body:set_user_data(e)
 
     return e
 end
@@ -261,6 +264,7 @@ function Entities:create_enemy_shooting(x, y)
     e.physics_body_origin = vmath.vector3(0, 6, 0)
     e.physics_body = physics3d.create_rect(e.position.x, e.position.y, 0, 64, 36, 20, false,
             self.physic_mask.ENEMY, self.physic_groups.ENEMY)
+    e.physics_body:set_user_data(e)
     e.shooting_config = {
         firerate = 3.5,
         shoot_delay = 2.5 + math.random()

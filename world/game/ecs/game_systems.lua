@@ -50,6 +50,11 @@ M.DrawEnemySystem = require "world.game.ecs.systems.draw_enemy_system"
 M.DrawPlayerProjectileSystem = require "world.game.ecs.systems.draw_player_projectile_system"
 M.DrawEnemyProjectileSystem = require "world.game.ecs.systems.draw_enemy_projectile_system"
 
+M.PhysicsCollisionEnemySystem = require "world.game.ecs.systems.physics_collision_enemy_system"
+M.PhysicsCollisionEnemyProjectileSystem = require "world.game.ecs.systems.physics_collision_enemy_projectile_system"
+M.PhysicsCollisionPlayerProjectileSystem = require "world.game.ecs.systems.physics_collision_player_projectile_system"
+M.PhysicsUpdateSystem = require "world.game.ecs.systems.physics_update_system"
+
 require = require_old
 
 -- luacheck: pop
