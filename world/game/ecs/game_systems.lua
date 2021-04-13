@@ -37,6 +37,8 @@ M.DebugDrawPhysicsBodiesSystem = require "world.game.ecs.systems.debug_draw_phys
 M.InputSystem = require "world.game.ecs.systems.input_system"
 M.MoveSystem = require "world.game.ecs.systems.move_system"
 
+M.EnemyCheckPositionSystem = require "world.game.ecs.systems.enemy_check_position_system"
+
 M.PhysicsUpdateBodyPositionSystem = require "world.game.ecs.systems.physics_update_body_position_system"
 M.DrawPlayerSystem = require "world.game.ecs.systems.draw_player_system"
 M.DrawEnemySystem = require "world.game.ecs.systems.draw_enemy_system"

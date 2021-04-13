@@ -177,8 +177,8 @@ function Entities:create_enemy_base(x, y)
     }
     e.actions = {}
     e.physics_dynamic = true
-    e.physics_body_origin = vmath.vector3(0, 6, 0)
-    e.physics_body = physics3d.create_rect(e.position.x, e.position.y, 0, 64, 36, 20, false,
+    e.physics_body_origin = vmath.vector3(0, -6, 0)
+    e.physics_body = physics3d.create_rect(e.position.x, e.position.y, 0, 64, 50, 20, false,
             self.physic_mask.ENEMY, self.physic_groups.ENEMY)
 
     return e
