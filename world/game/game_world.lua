@@ -9,6 +9,7 @@ local GameWorld = COMMON.class("GameWorld")
 ---@param world World
 function GameWorld:initialize(world)
     self.world = assert(world)
+    physics3d.init()
     self.ecs_game = EcsGame(self.world)
     self.command_executor = CommandExecutor()
 
@@ -19,7 +20,6 @@ function GameWorld:level_start()
 end
 
 function GameWorld:init()
-    physics3d.init()
     self.ecs_game:add_systems()
     self:level_start()
 end

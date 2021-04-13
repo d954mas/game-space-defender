@@ -15,4 +15,12 @@ function Debug:developer_set(enable)
     self:save_and_changed()
 end
 
+function Debug:physics_debug_draw_set(enable)
+    self.debug.physics_debug_draw = enable
+    self:changed()
+end
+
+function Debug:physics_debug_draw_is()
+    return self.debug.physics_debug_draw
+end
 return Debug

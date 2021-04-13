@@ -3,8 +3,8 @@ local ECS = require 'libs.ecs'
 
 local URLS = {
 	factory = {
-		debug_physics_body_static = msg.url("game:/factories/debug#debug_physics_body_static"),
-		debug_physics_body_dynamic = msg.url("game:/factories/debug#debug_physics_body_dynamic"),
+		debug_physics_body_static = msg.url("game_scene:/factories/debug#debug_physics_body_static"),
+		debug_physics_body_dynamic = msg.url("game_scene:/factories/debug#debug_physics_body_dynamic"),
 	}
 }
 
@@ -29,14 +29,22 @@ end
 
 ---@param e EntityGame
 function System:process(e, dt)
-	if(not e.debug_physics_body_go) then
-		e.debug_physics_body_go = create_go(e.physics_body)
+	if(self.world.game_world.storage.debug:physics_debug_draw_is())then
+		if(not e.debug_physics_body_go) then
+			e.debug_physics_body_go = create_go(e.physics_body)
+		end
+
+		if(e.debug_physics_body_go and e.physics_dynamic)then
+			local x, y = e.physics_body:get_position()
+			go.set_position(vmath.vector3(x, y, 0.3),e.debug_physics_body_go.root)
+		end
+	else
+		if(e.debug_physics_body_go)then
+			go.delete(e.debug_physics_body_go.root,true)
+			e.debug_physics_body_go = nil
+		end
 	end
 
-	if(e.debug_physics_body_go and e.physics_dynamic)then
-		local x, y = e.physics_body:get_position()
-		go.set_position(vmath.vector3(x, y, 0.3),e.debug_physics_body_go.root)
-	end
 end
 
 return System

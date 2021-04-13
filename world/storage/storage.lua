@@ -12,14 +12,14 @@ local TAG = "Storage"
 ---@class Storage
 local Storage = COMMON.class("Storage")
 
-Storage.VERSION = 13
+Storage.VERSION = 14
 Storage.AUTOSAVE = 30 --seconds
 Storage.CLEAR = CONSTANTS.VERSION_IS_DEV and false --BE CAREFUL. Do not use in prod
 Storage.LOCAL = CONSTANTS.VERSION_IS_DEV and CONSTANTS.PLATFORM_IS_PC and true --BE CAREFUL. Do not use in prod
 
 ---@param world World
 function Storage:initialize(world)
-    checks("?","class:World")
+    checks("?", "class:World")
     self.world = world
     self:_load_storage()
     self.prev_save_time = os.clock()
@@ -89,6 +89,7 @@ function Storage:_init_storage()
     self.data = {
         debug = {
             developer = true,
+            physics_debug_draw = true,
         },
         options = {
             sound = true,
@@ -98,7 +99,7 @@ function Storage:_init_storage()
             money = 0
         },
         highscores = {
-            0,0,0,0,0
+            0, 0, 0, 0, 0
         },
         game = {
             firerate_level = 1,
@@ -107,12 +108,11 @@ function Storage:_init_storage()
     }
 end
 
-
 function Storage:_migration()
     if (self.data.version < Storage.VERSION) then
         COMMON.i(string.format("migrate from:%s to %s", self.data.version, Storage.VERSION), TAG)
 
-        if (self.data.version < 13) then
+        if (self.data.version < 14) then
             self:_init_storage()
         end
 
@@ -133,7 +133,6 @@ function Storage:save(force)
         self.save_on_update = true
     end
 end
-
 
 return Storage
 

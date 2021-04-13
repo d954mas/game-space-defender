@@ -51,12 +51,12 @@ function Entities:initialize()
     ---@type EntityGame[]
     self.by_tag = {}
     self.physic_groups = {
-        SQUARE = bit.tobit(1),
-        TOUCH = bit.tobit(2)
+        PLAYER = bit.tobit(1),
+        ENEMY = bit.tobit(2)
     }
     self.physic_mask = {
-        TOUCH = bit.bor(self.physic_groups.SQUARE),
-        SQUARE = bit.bor(self.physic_groups.TOUCH)
+        PLAYER = bit.bor(self.physic_groups.ENEMY),
+        ENEMY = bit.bor(self.physic_groups.PLAYER)
     }
 end
 
@@ -113,6 +113,9 @@ function Entities:create_player()
     player.player = true
     player.position = vmath.vector3(0, -50, 0)
     player.actions = {}
+    player.physics_dynamic = true
+    player.physics_body = physics3d.create_rect(0, -50, 0, 68, 60, 20, false,
+    self.physic_mask.PLAYER,self.physic_groups.PLAYER)
     player.player_go = msg.url("game_scene:/player")
 
     return player
