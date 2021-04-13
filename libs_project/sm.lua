@@ -7,16 +7,17 @@ local scenes = {
     require "scenes.game.game_scene",
     require "scenes.menu.menu_scene",
     require "scenes.shop.shop_scene",
-    require "scenes.highscore.highscore_scene"
+    require "scenes.highscore.highscore_scene",
+    require "scenes.game_lose.game_lose_scene"
 }
 
 sm.SCENES = {
     GAME = "GameScene",
+    GAME_LOSE = "GameLoseScene",
     MENU = "MenuScene",
     SHOP = "ShopScene",
     HIGHSCORE = "HighscoreScene"
 }
-
 
 function sm:register_scenes()
     local reg_scenes = {}

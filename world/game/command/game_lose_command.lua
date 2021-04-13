@@ -7,9 +7,9 @@ local CommandBase = require "world.commands.command_base"
 local GameLoseCommand = COMMON.class("GameLoseCommand", CommandBase)
 
 function GameLoseCommand:act(dt)
-    COMMON.coroutine_wait(0.5)
+    COMMON.coroutine_wait(0.25)
+    SM:show(SM.SCENES.GAME_LOSE)
     self.world.storage.resource:money_add(self.world.balance:score_to_money(self.world.game.score))
-    SM:back()
 end
 
 return GameLoseCommand

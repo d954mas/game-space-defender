@@ -18,7 +18,7 @@ end
 
 function Balance:firerate_level_cost_upgrade_get()
     local level = self.world.storage.game:firerate_level_get()
-    return math.ceil(1000 * math.pow(1.5, level));
+    return math.ceil(1000 * math.pow(1.5, level-1));
 end
 
 function Balance:level_enemy_base_count(level)
