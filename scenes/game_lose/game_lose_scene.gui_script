@@ -31,12 +31,12 @@ function Script:init_gui()
     self.money_x2 = false
     gui.set_render_order(COMMON.CONSTANTS.GUI_ORDER.MODAL_1)
     self.views.btn_menu:set_input_listener(function()
-        WORLD.ads:show_interstitial_ad()
+        WORLD.ads:show_interstitial_ad("menu_play")
         SM:back_to(SM.SCENES.MENU)
     end)
     self.views.btn_money_x2:set_ignore_input(not WORLD.ads:rewarded_ad_exist())
     self.views.btn_money_x2:set_input_listener(function()
-        WORLD.ads:rewarded_ad_show()
+        WORLD.ads:rewarded_ad_show("game_lose_money_x2")
         self.views.btn_money_x2:set_ignore_input(true)
         --add money
         self.money_x2 = true

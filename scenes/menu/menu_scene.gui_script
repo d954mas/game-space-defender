@@ -7,46 +7,45 @@ local SoundMusicGuiScript = require "libs.scripts.sound_music_gui_script"
 local BaseGuiScript = require "libs_project.scripts.base_gui_script"
 
 ---@class MenuSceneGuiScript:ScriptMain
-local Script = COMMON.class("GameSceneGuiScript",BaseGuiScript)
+local Script = COMMON.class("GameSceneGuiScript", BaseGuiScript)
 
 function Script:init()
-   BaseGuiScript.init(self,{context_name = nil})
+    BaseGuiScript.init(self, { context_name = nil })
 end
 
 function Script:bind_vh()
-   self.vh = {
+    self.vh = {
 
-   }
-   self.views = {
-      btn_play = GUI.ButtonBase("btn_play"),
-      btn_shop = GUI.ButtonBase("btn_shop"),
-      btn_highscore = GUI.ButtonBase("btn_highscore"),
-   }
+    }
+    self.views = {
+        btn_play = GUI.ButtonBase("btn_play"),
+        btn_shop = GUI.ButtonBase("btn_shop"),
+        btn_highscore = GUI.ButtonBase("btn_highscore"),
+    }
 end
 
 function Script:init_gui()
-   BaseGuiScript.init_gui(self)
+    BaseGuiScript.init_gui(self)
 
-   self.views.btn_play:set_input_listener(function ()
-      WORLD.ads:show_interstitial_ad()
-      SM:show(SM.SCENES.GAME)
-   end)
-   self.views.btn_highscore:set_input_listener(function () SM:show(SM.SCENES.HIGHSCORE) end)
-   self.views.btn_shop:set_input_listener(function () SM:show(SM.SCENES.SHOP) end)
+    self.views.btn_play:set_input_listener(function()
+        WORLD.ads:show_interstitial_ad("game_lose_restart")
+        SM:show(SM.SCENES.GAME)
+    end)
+    self.views.btn_highscore:set_input_listener(function() SM:show(SM.SCENES.HIGHSCORE) end)
+    self.views.btn_shop:set_input_listener(function() SM:show(SM.SCENES.SHOP) end)
 end
 
 function Script:update(dt)
-   BaseGuiScript.update(self,dt)
+    BaseGuiScript.update(self, dt)
 end
 
-function Script:on_input(action_id,action)
-   if (self.views.btn_play:on_input(action_id, action)) then return true end
-   if (self.views.btn_shop:on_input(action_id, action)) then return true end
-   if (self.views.btn_highscore:on_input(action_id, action)) then return true end
+function Script:on_input(action_id, action)
+    if (self.views.btn_play:on_input(action_id, action)) then return true end
+    if (self.views.btn_shop:on_input(action_id, action)) then return true end
+    if (self.views.btn_highscore:on_input(action_id, action)) then return true end
 end
-
 
 COMMON.N28S.register_scripts({
-   SoundMusicGuiScript(),
-   Script()
+    SoundMusicGuiScript(),
+    Script()
 })

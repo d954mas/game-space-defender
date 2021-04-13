@@ -9,7 +9,7 @@ function Analytics:init(config)
     self.initialized = true
     self.config = config
     self.disabled = false
-    if(COMMON.CONSTANTS.PLATFORM_IS_WINDOWS)then
+    if (COMMON.CONSTANTS.PLATFORM_IS_WINDOWS) then
         self.disabled = false
     end
     gameanalytics.setCustomDimension01(COMMON.CONSTANTS.GAME_TARGET)
@@ -46,12 +46,33 @@ function Analytics:critical(message)
     end
 end
 
-function Analytics:eventCustom(id,value)
+function Analytics:eventCustom(id, value)
     if (self.initialized and not self.disabled) then
         gameanalytics.addDesignEvent { eventId = id, value = value }
     end
 end
 
+function Analytics:ad_interstitial(adSdkName, adPlacement)
+    if (self.initialized and not self.disabled) then
+        gameanalytics.addAdEvent {
+            adAction = "Show",
+            adType = "Interstitial",
+            adSdkName = adSdkName,
+            adPlacement = adPlacement
+        }
+    end
+end
+function Analytics:ad_rewarded_show(adSdkName, adPlacement)
+    checks("?", "string", "string")
+    if (self.initialized and not self.disabled) then
+        gameanalytics.addAdEvent {
+            adAction = "RewardReceived",
+            adType = "RewardedVideo",
+            adSdkName = adSdkName,
+            adPlacement = adPlacement
+        }
+    end
+end
 
 local a = Analytics()
 a:init({})

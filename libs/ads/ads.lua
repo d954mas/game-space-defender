@@ -4,7 +4,7 @@ local SM = COMMON.LUME.meta_getter(function() return reqf "libs_project.sm" end)
 ---@type Sounds
 local SOUNDS = COMMON.LUME.meta_getter(function() return reqf "libs.sounds" end)
 local SCENE_ENUMS = require "libs.sm.enums"
-
+local ANALYTICS = require "libs_project.analytics"
 local TAG = "ADS"
 
 local Ads = COMMON.class("Ads")
@@ -41,10 +41,13 @@ function Ads:gdsdk_init()
     end
 end
 
-function Ads:show_interstitial_ad()
+function Ads:show_interstitial_ad(ad_placement)
     if (os.clock() > self.interstitial_ad_next_time) then
         COMMON.w("interstitial_ad show", TAG)
-        if (gdsdk) then gdsdk.show_interstitial_ad() else
+        if (gdsdk) then
+            gdsdk.show_interstitial_ad()
+            ANALYTICS:ad_rewarded_show("gdsdk", ad_placement)
+        else
             COMMON.w("interstitial_ad no provider")
         end
         self.interstitial_ad_next_time = os.clock() + self.interstitial_ad_next_time
@@ -53,9 +56,10 @@ function Ads:show_interstitial_ad()
     end
 end
 
-function Ads:rewarded_ad_show()
+function Ads:rewarded_ad_show(ad_placement)
     if (gdsdk) then
         gdsdk.show_rewarded_ad()
+        ANALYTICS:ad_rewarded_show("gdsdk", ad_placement)
     end
 end
 
