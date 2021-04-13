@@ -26,7 +26,6 @@ function System:process(e, dt)
     if (e.enemy_go) then
         V3.x, V3.y, V3.z = e.position.x, e.position.y, e.position.z
         go.set_position(V3, e.enemy_go)
-        pprint(V3)
     end
 end
 
