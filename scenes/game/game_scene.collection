@@ -276,7 +276,7 @@ embedded_instances {
 embedded_instances {
   id: "sounds"
   data: "embedded_components {\n"
-  "  id: \"sound\"\n"
+  "  id: \"explosion\"\n"
   "  type: \"sound\"\n"
   "  data: \"sound: \\\"/assets/sounds/bomb.ogg\\\"\\n"
   "looping: 0\\n"

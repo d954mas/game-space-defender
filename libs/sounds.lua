@@ -1,6 +1,7 @@
 local COMMON = require "libs.common"
 
 local TAG = "Sound"
+---@class Sounds
 local Sounds = COMMON.class("Sounds")
 
 --gate https://www.defold.com/manuals/sound/
@@ -8,9 +9,7 @@ function Sounds:initialize()
 	self.gate_time = 0.1
 	self.gate_sounds = {}
 	self.sounds = {
-		square_miss = {name = "square_miss", url = msg.url("game:/sounds#square_miss")},
-		square_hit = {name = "square_hit", url = msg.url("game:/sounds#square_hit")}
-
+		explosion = {name = "explosion", url = msg.url("game_scene:/sounds#explosion")},
 	}
 	self.music = {
 		main = {name = "main",url = msg.url("main:/music#main")}

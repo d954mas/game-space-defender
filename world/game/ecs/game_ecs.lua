@@ -51,6 +51,7 @@ function EcsWorld:add_systems()
     self.ecs:addSystem(SYSTEMS.DrawPlayerProjectileSystem())
     self.ecs:addSystem(SYSTEMS.DrawEnemyProjectileSystem())
     self.ecs:addSystem(SYSTEMS.DrawEnemySystem())
+    self.ecs:addSystem(SYSTEMS.DrawExplosionSystem())
 
     self.ecs:addSystem(SYSTEMS.AutoDestroySystem())
 end

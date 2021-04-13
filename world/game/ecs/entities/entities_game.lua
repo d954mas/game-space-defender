@@ -1,6 +1,11 @@
 local COMMON = require "libs.common"
 local TAG = "Entities"
 local ENUMS = require "world.enums.enums"
+local ACTIONS = require "libs.actions.actions"
+---@type Sounds
+local SOUNDS = COMMON.LUME.meta_getter(function()
+    return reqf "libs.sounds"
+end)
 
 ---@class MoveCurveConfig
 ---@field curve Curve
@@ -62,6 +67,8 @@ local ENUMS = require "world.enums.enums"
 ---@field enemy_projectile_go url
 ---@field actions Action[]
 ---@field shooting_config ShootingConfig[]
+---@field explosion boolean
+---@field explosion_go url
 
 
 ---@class ENTITIES
@@ -123,6 +130,11 @@ function Entities:on_entity_removed(e)
         go.delete(e.enemy_projectile_go, true)
         e.enemy_projectile_go = nil
     end
+
+    if (e.explosion_go) then
+        go.delete(e.explosion_go, true)
+        e.explosion_go = nil
+    end
 end
 
 ---@param e EntityGame
@@ -152,7 +164,7 @@ function Entities:create_player()
     ---@type EntityGame
     local player = {}
     player.player = true
-    player.position = vmath.vector3(0, -50, 0)
+    player.position = vmath.vector3(0, -50, 0.5)
     player.movement = {
         velocity = vmath.vector3(0, 0, 0),
         direction = vmath.vector3(0, 0, 0),
@@ -181,7 +193,7 @@ function Entities:create_player_projectile(x, y)
     ---@type EntityGame
     local e = {}
     e.player_projectile = true
-    e.position = vmath.vector3(x, y, 0)
+    e.position = vmath.vector3(x, y, 0.55)
     e.movement = {
         velocity = vmath.vector3(0, 0, 0),
         direction = vmath.vector3(0, 1, 0),
@@ -203,7 +215,7 @@ function Entities:create_enemy_projectile(x, y)
     ---@type EntityGame
     local e = {}
     e.enemy_projectile = true
-    e.position = vmath.vector3(x, y, 0.4)
+    e.position = vmath.vector3(x, y, 0.7)
     e.movement = {
         velocity = vmath.vector3(0, 0, 0),
         direction = vmath.vector3(0, -1, 0),
@@ -269,6 +281,20 @@ function Entities:create_enemy_shooting(x, y)
         firerate = 3.5,
         shoot_delay = 2.5 + math.random()
     }
+    return e
+end
+
+function Entities:create_explosion(x, y)
+    ---@type EntityGame
+    local e = {}
+    e.position = vmath.vector3(x, y, 0.05)
+    e.explosion = true
+    e.actions = {
+        ACTIONS.Function { fun = function()
+            SOUNDS:play_sound(SOUNDS.sounds.explosion)
+        end }
+    }
+    e.auto_destroy_delay = 0.4 + 16 / 24 --16 frame per 24(fps)
     return e
 end
 
