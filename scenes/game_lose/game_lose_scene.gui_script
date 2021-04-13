@@ -1,0 +1,44 @@
+local COMMON = require "libs.common"
+local GUI = require "libs_project.gui.gui"
+local WORLD = require "world.world"
+local SM = require "libs_project.sm"
+
+local BaseGuiScript = require "libs_project.scripts.base_gui_script"
+
+---@class GameLoseSceneGuiScript:GuiScriptBase
+local Script = COMMON.class("GameLoseSceneGuiScript", BaseGuiScript)
+
+function Script:init()
+    BaseGuiScript.init(self, { context_name = nil })
+end
+
+function Script:bind_vh()
+    self.vh = {
+        lbl_money = gui.get_node("lbl_money"),
+        lbl_score = gui.get_node("lbl_score"),
+        lbl_wave = gui.get_node("lbl_wave"),
+        root = gui.get_node("root"),
+    }
+    self.views = {
+        btn_restart = GUI.ButtonBase("btn_restart"),
+        btn_menu = GUI.ButtonBase("btn_menu"),
+    }
+end
+
+function Script:init_gui()
+    BaseGuiScript.init_gui(self)
+    gui.set_render_order(COMMON.CONSTANTS.GUI_ORDER.MODAL_1)
+    self.views.btn_menu:set_input_listener(function() SM:back_to(SM.SCENES.MENU) end)
+    self.views.btn_restart:set_input_listener(function() SM:reload(nil, { close_modals = true }) end)
+    gui.set_text(self.vh.lbl_score, string.format("Score:%d", WORLD.game.score))
+    gui.set_text(self.vh.lbl_money, string.format("Money:%d$", WORLD.balance:score_to_money(WORLD.game.score)))
+    gui.set_text(self.vh.lbl_wave, string.format("Wave:%d", WORLD.game.level))
+    gui.animate(self.vh.root, "color.w", 1, gui.EASING_OUTQUAD, 1, 0)
+end
+
+function Script:on_input(action_id, action)
+    if (self.views.btn_restart:on_input(action_id, action)) then return end
+    if (self.views.btn_menu:on_input(action_id, action)) then return end
+end
+
+COMMON.N28S.register(Script())

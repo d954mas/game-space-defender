@@ -30,7 +30,8 @@ function Script:init_gui()
 end
 
 function Script:highscore_updated()
-   local scores = WORLD.storage.highscore:highscores_get()
+    local scores = WORLD.storage.highscore:highscores_get()
+    pprint(scores)
    gui.set_text(self.vh.lbl_highscores,string.format("1)%d\n2)%d\n3)%d\n4)%d\n5)%d",scores[1],
    scores[2],scores[3],scores[4],scores[5]))
 end

@@ -35,7 +35,7 @@ end
 ---@param e EntityGame
 function GameWorld:enemy_on_kill(e)
     assert(e.enemy)
-    if(self.state == ENUMS.GAME_STATE.RUN)then
+    if (self.state == ENUMS.GAME_STATE.RUN) then
         if (e.enemy_type == ENUMS.ENEMY_TYPE.BASE) then
             self.score = self.score + 100
         elseif (e.enemy_type == ENUMS.ENEMY_TYPE.SHOOTING) then
@@ -54,9 +54,6 @@ end
 function GameWorld:update(dt)
     self.command_executor:act(dt)
     self.ecs_game:update(dt)
-    --do not update physics.
-    --update it only when touch
-    --physics3d.update(dt)
 end
 
 function GameWorld:final()
