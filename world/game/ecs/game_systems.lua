@@ -41,11 +41,14 @@ M.PlayerShootingSystem = require "world.game.ecs.systems.player_shooting_system"
 M.PlayerProjectileCheckPositionSystem = require "world.game.ecs.systems.player_projectile_check_position_system"
 
 M.EnemyCheckPositionSystem = require "world.game.ecs.systems.enemy_check_position_system"
+M.EnemyProjectileCheckPositionSystem = require "world.game.ecs.systems.enemy_projectile_check_position_system"
+M.EnemyShootingSystem = require "world.game.ecs.systems.enemy_shooting_system"
 
 M.PhysicsUpdateBodyPositionSystem = require "world.game.ecs.systems.physics_update_body_position_system"
 M.DrawPlayerSystem = require "world.game.ecs.systems.draw_player_system"
 M.DrawEnemySystem = require "world.game.ecs.systems.draw_enemy_system"
 M.DrawPlayerProjectileSystem = require "world.game.ecs.systems.draw_player_projectile_system"
+M.DrawEnemyProjectileSystem = require "world.game.ecs.systems.draw_enemy_projectile_system"
 
 require = require_old
 
