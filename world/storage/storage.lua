@@ -12,7 +12,7 @@ local TAG = "Storage"
 ---@class Storage
 local Storage = COMMON.class("Storage")
 
-Storage.VERSION = 14
+Storage.VERSION = 15
 Storage.AUTOSAVE = 30 --seconds
 Storage.CLEAR = CONSTANTS.VERSION_IS_DEV and false --BE CAREFUL. Do not use in prod
 Storage.LOCAL = CONSTANTS.VERSION_IS_DEV and CONSTANTS.PLATFORM_IS_PC and true --BE CAREFUL. Do not use in prod
@@ -89,7 +89,7 @@ function Storage:_init_storage()
     self.data = {
         debug = {
             developer = true,
-            physics_debug_draw = true,
+            physics_debug_draw = false,
         },
         options = {
             sound = true,
@@ -112,7 +112,7 @@ function Storage:_migration()
     if (self.data.version < Storage.VERSION) then
         COMMON.i(string.format("migrate from:%s to %s", self.data.version, Storage.VERSION), TAG)
 
-        if (self.data.version < 14) then
+        if (self.data.version < 15) then
             self:_init_storage()
         end
 

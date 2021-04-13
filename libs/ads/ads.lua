@@ -13,8 +13,8 @@ local Ads = COMMON.class("Ads")
 function Ads:initialize(world)
     checks("?", "class:World")
     self.world = world
-    self.interstitial_ad_next_time = os.clock()
-    self.interstitial_ad_next_time = 4 * 60
+    self.interstitial_ad_next_time = 0
+    self.interstitial_ad_delay = 4 * 60
     self:gdsdk_init()
 end
 
@@ -50,7 +50,7 @@ function Ads:show_interstitial_ad(ad_placement)
         else
             COMMON.w("interstitial_ad no provider")
         end
-        self.interstitial_ad_next_time = os.clock() + self.interstitial_ad_next_time
+        self.interstitial_ad_next_time = os.clock() + self.interstitial_ad_delay
     else
         COMMON.w("interstitial_ad need wait", TAG)
     end
