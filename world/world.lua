@@ -21,12 +21,6 @@ end
 function M:update(dt)
     self.command_executor:act(dt)
     self.storage:update(dt)
-    if (COMMON.CONTEXT:exist(COMMON.CONTEXT.NAMES.GAME)) then
-        local ctx = COMMON.CONTEXT:set_context_top_game()
-        self.game:update(dt)
-        ctx:remove()
-    end
-
 end
 
 function M:final()

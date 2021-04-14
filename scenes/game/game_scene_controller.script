@@ -10,6 +10,10 @@ function Script:init()
 end
 
 function Script:update(dt)
+    --for bug game was update twice time
+    --all balance is for x2 time so
+    --update game second time
+    WORLD.game:update(dt)
     WORLD.game:update(dt)
 end
 
