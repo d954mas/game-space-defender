@@ -24,7 +24,7 @@ local M = {
 
 	lose_title = { en = "YOU LOSE", ru = "ПРОИГРЫШ" },
 	lose_score_lbl = { en = "Score:%{score}", ru = "Очки:%{score}" },
-	lose_money_lbl = { en = "Money:%{money}", ru = "Деньги:%{money}$" },
+	lose_money_lbl = { en = "Money:%{money}$", ru = "Деньги:%{money}$" },
 	lose_wave_lbl = { en = "Wave:%{wave}", ru = "Волна:%{wave}" },
 
 }
