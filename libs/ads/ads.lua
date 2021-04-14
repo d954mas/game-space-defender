@@ -17,7 +17,9 @@ function Ads:initialize(world)
     self.interstitial_ad_next_time = 0
     self.interstitial_ad_delay = 4 * 60
     self:gdsdk_init()
+    self:yandex_init()
 end
+
 
 function Ads:yandex_init()
     if (yagames_private) then

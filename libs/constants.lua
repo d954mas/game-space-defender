@@ -2,6 +2,7 @@ local lume = require "libs.lume"
 
 local M = {}
 
+
 M.SYSTEM_INFO = sys.get_sys_info()
 M.PLATFORM = M.SYSTEM_INFO.system_name
 M.PLATFORM_IS_WEB = M.PLATFORM == "HTML5"

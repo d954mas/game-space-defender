@@ -12,6 +12,7 @@ local TAG = "Storage"
 ---@class Storage
 local Storage = COMMON.class("Storage")
 
+Storage.FILE_PATH = "d954mas_space_defender"
 Storage.VERSION = 15
 Storage.AUTOSAVE = 30 --seconds
 Storage.CLEAR = CONSTANTS.VERSION_IS_DEV and false --BE CAREFUL. Do not use in prod
@@ -40,7 +41,7 @@ function Storage:_get_path()
     if (Storage.LOCAL) then
         return "storage.json"
     end
-    return sys.get_save_file("game_name", "storage.json")
+    return sys.get_save_file(Storage.FILE_PATH, "storage.json")
 end
 
 function Storage:_load_storage()
