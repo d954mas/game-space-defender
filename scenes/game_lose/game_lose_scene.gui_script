@@ -32,21 +32,30 @@ function Script:init_gui()
     self.money_x2 = false
     gui.set_render_order(COMMON.CONSTANTS.GUI_ORDER.MODAL_1)
     self.views.btn_menu:set_input_listener(function()
-        WORLD.ads:show_interstitial_ad("menu_play")
-        SM:back_to(SM.SCENES.MENU)
+        WORLD.ads:show_interstitial_ad("game_lose_restart", function()
+            SM:back_to(SM.SCENES.MENU)
+        end)
     end)
     gui.set_text(self.vh.lbl_title, COMMON.LOCALIZATION.lose_title())
     self.views.btn_money_x2:set_ignore_input(not WORLD.ads:rewarded_ad_exist())
     self.views.btn_money_x2:set_input_listener(function()
-        WORLD.ads:rewarded_ad_show("game_lose_money_x2")
-        self.views.btn_money_x2:set_ignore_input(true)
-        --add money
-        self.money_x2 = true
-        WORLD.storage.resource:money_add(WORLD.balance:score_to_money(WORLD.game.score))
-        gui.set_text(self.vh.lbl_money,
-                COMMON.LOCALIZATION.lose_money_lbl { money = WORLD.balance:score_to_money(WORLD.game.score) * (self.money_x2 and 2 or 1) })
+        WORLD.ads:rewarded_ad_show("game_lose_money_x2", function(success)
+            if (success) then
+                self.views.btn_money_x2:set_ignore_input(true)
+                --add money
+                self.money_x2 = true
+                WORLD.storage.resource:money_add(WORLD.balance:score_to_money(WORLD.game.score))
+                gui.set_text(self.vh.lbl_money,
+                        COMMON.LOCALIZATION.lose_money_lbl { money = WORLD.balance:score_to_money(WORLD.game.score) * (self.money_x2 and 2 or 1) })
+            end
+        end)
+
     end)
-    self.views.btn_restart:set_input_listener(function() SM:reload(nil, { close_modals = true }) end)
+    self.views.btn_restart:set_input_listener(function()
+        WORLD.ads:show_interstitial_ad("game_lose_restart", function()
+            SM:reload(nil, { close_modals = true })
+        end)
+    end)
     gui.set_text(self.vh.lbl_score,
             COMMON.LOCALIZATION.lose_score_lbl { score = WORLD.game.score })
     gui.set_text(self.vh.lbl_money,
@@ -59,7 +68,6 @@ function Script:init_gui()
     self.views.btn_restart:text_set(COMMON.LOCALIZATION.btn_restart())
     self.views.btn_menu:text_set(COMMON.LOCALIZATION.btn_menu())
 end
-
 
 function Script:update(dt)
     local ctx = COMMON.CONTEXT:set_context_top_game()
