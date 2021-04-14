@@ -75,6 +75,7 @@ read_globals = {
   "screenshot",
   "physics3d",
   "gameanalytics",
+  "gdsdk",
 }
 
 globals = {

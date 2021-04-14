@@ -30,7 +30,7 @@ function Script:init(config)
     self.subscription:add(COMMON.EVENT_BUS:subscribe(COMMON.EVENTS.STORAGE_CHANGED):go_distinct(self.scheduler):subscribe(function ()
         self:on_storage_changed()
     end))
-   
+
     self:init_gui()
     self:on_storage_changed()
     if(self.config.input) then COMMON.input_acquire() end

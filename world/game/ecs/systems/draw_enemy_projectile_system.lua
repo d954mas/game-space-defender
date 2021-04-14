@@ -1,4 +1,3 @@
-local COMMON = require "libs.common"
 local ECS = require 'libs.ecs'
 
 local FACTORY = msg.url("game_scene:/factories#enemy_shooting_projectile")

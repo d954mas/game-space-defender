@@ -1,7 +1,5 @@
 local COMMON = require "libs.common"
-local GUI = require "libs_project.gui.gui"
 local WORLD = require "world.world"
-local SM = require "libs_project.sm"
 
 local BaseGuiScript = require "libs_project.scripts.base_gui_script"
 
@@ -17,7 +15,7 @@ function Script:bind_vh()
         lbl_score = gui.get_node("lbl_score")
    }
    self.views = {
-    
+
    }
 end
 
@@ -30,7 +28,6 @@ function Script:update(dt)
 end
 
 function Script:on_input(action_id,action)
-  
 end
 
 

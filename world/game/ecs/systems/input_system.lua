@@ -1,6 +1,5 @@
 local ECS = require 'libs.ecs'
 local COMMON = require "libs.common"
-local INPUT = require "libs.input_receiver"
 
 ---@class InputSystem:ECSSystemProcessing
 local System = ECS.processingSystem()

@@ -21,7 +21,7 @@ end
 function Ads:gdsdk_init()
     if (gdsdk) then
         COMMON.i("init gdsdk", TAG)
-        gdsdk.set_listener(function(self, event, message)
+        gdsdk.set_listener(function(_, event, message)
             COMMON.i("event:" .. tostring(event), TAG)
             pprint(message)
             if event == gdsdk.SDK_GAME_PAUSE then
@@ -76,9 +76,8 @@ function Ads:banner_show(ad_placement)
     if (gdsdk) then
         gdsdk.show_display_ad("canvas-ad")
     end
-
-  
 end
+
 function Ads:banner_hide(ad_placement)
     COMMON.i("banner hide:" .. ad_placement)
     if (gdsdk) then

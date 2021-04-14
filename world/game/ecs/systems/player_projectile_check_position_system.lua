@@ -1,9 +1,5 @@
-local COMMON = require "libs.common"
 local ECS = require 'libs.ecs'
-local ENUMS = require "world.enums.enums"
 local CAMERAS = require "libs_project.cameras"
-
-local FACTORY = {}
 
 ---@class PlayerProjectileCheckPositionSystem:ECSSystem
 local System = ECS.processingSystem()

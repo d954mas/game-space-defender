@@ -69,7 +69,7 @@ function Stars:initialize(world)
 end
 
 function Stars:update(dt)
-    dt = 0.016
+    dt = 0.016 --overwrite dt
     for _, star in ipairs(self.stars) do
         star:update(dt)
     end

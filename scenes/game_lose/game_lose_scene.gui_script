@@ -41,7 +41,8 @@ function Script:init_gui()
         --add money
         self.money_x2 = true
         WORLD.storage.resource:money_add(WORLD.balance:score_to_money(WORLD.game.score))
-        gui.set_text(self.vh.lbl_money, string.format("Money:%d$", WORLD.balance:score_to_money(WORLD.game.score)*(self.money_x2 and 2 or 1)))
+        gui.set_text(self.vh.lbl_money, string.format("Money:%d$",
+                WORLD.balance:score_to_money(WORLD.game.score)*(self.money_x2 and 2 or 1)))
     end)
     self.views.btn_restart:set_input_listener(function() SM:reload(nil, { close_modals = true }) end)
     gui.set_text(self.vh.lbl_score, string.format("Score:%d", WORLD.game.score))

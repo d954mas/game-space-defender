@@ -15,7 +15,7 @@ end
 
 ---@param info NativePhysicsCollisionInfo
 function System:is_handle_collision(info)
-    local e1, e2 = info.body1:get_user_data(), info.body2:get_user_data()
+   -- local e1, e2 = info.body1:get_user_data(), info.body2:get_user_data()
     return false
 end
 
