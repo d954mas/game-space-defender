@@ -81,11 +81,12 @@
 			<div class="link">Made with <a href="https://defold.com/" target="_blank">Defold</a></div>
 {{/html5.show_made_with_defold}}
 		</div>
+		<!-- center and anchor to bottom of page -->
+		<div style="position: absolute; bottom: 0px; left: 50%; background-color: lightblue; ">
+			<div id="canvas-ad" style="width: 300px; height:250px; margin-left: -50%;background-color: lightblue;"/>
+		</div>
 	</div>
-	<!-- center and anchor to bottom of page -->
-	<div style="position: absolute; bottom: 0px; left: 50%;">
-		<div id="canvas-ad" style="width: 300px; height:250px; margin-left: -50%;"/>
-	</div>
+
 	<!-- -->
 	<script id='engine-loader' type='text/javascript' src="dmloader.js"></script>
 	<!-- -->
@@ -163,8 +164,22 @@
 	{{/DEFOLD_SCALE_MODE_IS_DOWNSCALE_FIT}}
 	{{#DEFOLD_SCALE_MODE_IS_STRETCH}}
 		//Stretch
-		width = innerWidth;
-		height = innerHeight;
+		//width = innerWidth;
+		//height = innerHeight;
+		//Fit
+		if (actualRatio > targetRatio) {
+			width = innerHeight * targetRatio;
+			height = innerHeight;
+			app_container.style.marginLeft = ((innerWidth - width) / 2) + "px";
+			app_container.style.marginTop = "0px";
+		}
+		else {
+			width = innerWidth;
+			height = innerHeight;
+			//app_container.style.marginLeft = "0px";
+			//app_container.style.marginTop = ((innerHeight - height) / 2) + "px";
+		}
+
 	{{/DEFOLD_SCALE_MODE_IS_STRETCH}}
 	{{#DEFOLD_SCALE_MODE_IS_FIT}}
 		//Fit

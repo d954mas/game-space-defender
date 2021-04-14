@@ -11,11 +11,11 @@ end
 
 function Scene:show_done()
     BaseScene.show_done(self)
-    self.world.ads:banner_show("menu")
+   -- self.world.ads:banner_show("menu")
 end
 
 function Scene:hide_done()
-    self.world.ads:banner_hide("menu")
+  --  self.world.ads:banner_hide("menu")
 end
 
 return Scene
