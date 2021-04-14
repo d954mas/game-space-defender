@@ -14,8 +14,7 @@ M.PLATFORM_IS_IPHONE = M.PLATFORM == "iPhone OS"
 M.PLATFORM_IS_PC = M.PLATFORM_IS_WINDOWS or M.PLATFORM_IS_LINUX or M.PLATFORM_IS_MACOS
 M.PLATFORM_IS_MOBILE = M.PLATFORM_IS_ANDROID or M.PLATFORM_IS_IPHONE
 
-M.PROJECT_VERSION =  sys.get_config("project.version")
-
+M.PROJECT_VERSION = sys.get_config("project.version")
 
 M.GAME_VERSION = sys.get_config("game.version")
 
@@ -33,7 +32,7 @@ M.TARGETS = {
     YANDEX_GAMES = "yandex_games",
 }
 
-assert(lume.find(M.TARGETS,M.GAME_TARGET),"unknown target:" .. M.GAME_TARGET)
+assert(lume.find(M.TARGETS, M.GAME_TARGET), "unknown target:" .. M.GAME_TARGET)
 
 M.TARGET_IS_EDITOR = M.GAME_TARGET == M.TARGETS.EDITOR
 M.TARGET_IS_PLAY_MARKET = M.GAME_TARGET == M.TARGETS.PLAY_MARKET
@@ -42,13 +41,11 @@ M.TARGET_IS_POKI = M.GAME_TARGET == M.TARGETS.POKI
 M.TARGET_IS_ITCH_IO = M.GAME_TARGET == M.TARGETS.ITCH_IO
 M.TARGET_IS_YANDEX_GAMES = M.GAME_TARGET == M.TARGETS.YANDEX_GAMES
 
-
-
 M.IS_TESTS = sys.get_config("tests.tests_run")
 
 M.LOCALIZATION = {
     DEFAULT = sys.get_config("localization.default") or "en",
-    USE_SYSTEM = ((sys.get_config("localization.use_system") or "false") == true) and true or false,
+    USE_SYSTEM = (sys.get_config("localization.use_system") or "false") == "true",
     FORCE_LOCALE = sys.get_config("localization.force_locale")
 }
 
@@ -59,6 +56,5 @@ M.GUI_ORDER = {
     MODAL_3 = 5,
     DEBUG = 15,
 }
-
 
 return M

@@ -21,9 +21,12 @@ end
 
 function Ads:yandex_init()
     if (yagames_private) then
+        COMMON.i("yagames init start", TAG)
         yagames.init(function(_, err)
             if err then
-                COMMON.LOG.e("yagames init: " .. tostring(err), TAG)
+                COMMON.LOG.e("yagames init error: " .. tostring(err), TAG)
+            else
+                COMMON.LOG.e("yagames init success", TAG)
             end
         end)
     end

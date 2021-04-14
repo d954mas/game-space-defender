@@ -2,6 +2,7 @@ local I18N = require "libs.i18n.init"
 local LOG = require "libs.log"
 local CONSTANTS = require "libs.constants"
 local TAG = "LOCALIZATION"
+local LUME = require "libs.lume"
 local LOCALES = { "en", "ru" }
 local DEFAULT = CONSTANTS.LOCALIZATION.DEFAULT
 local FALLBACK = DEFAULT
@@ -48,9 +49,18 @@ end
 I18N.setFallbackLocale(FALLBACK)
 M:set_locale(DEFAULT)
 if(CONSTANTS.LOCALIZATION.FORCE_LOCALE)then
+	LOG.i("force locale:" .. CONSTANTS.LOCALIZATION.FORCE_LOCALE,TAG)
 	M:set_locale(CONSTANTS.LOCALIZATION.FORCE_LOCALE)
 elseif(CONSTANTS.LOCALIZATION.USE_SYSTEM)then
-	M:set_locale(sys.get_sys_info().language)
+	local system_locale = sys.get_sys_info().language
+	LOG.i("system locale:" .. system_locale,TAG)
+	if(LUME.findi(LOCALES,system_locale)) then
+		M:set_locale(system_locale)
+	else
+		LOG.i("unknown system locale:" .. system_locale,TAG)
+		pprint(LOCALES)
+	end
+
 end
 
 for _, locale in ipairs(LOCALES) do
