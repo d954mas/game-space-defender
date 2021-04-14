@@ -14,6 +14,7 @@ end
 
 function Script:bind_vh()
     self.vh = {
+        lbl_title = gui.get_node("lbl_title"),
         lbl_money = gui.get_node("lbl_money"),
         btn_buy_firerate_lbl = gui.get_node("btn_buy_firerate/label")
     }
@@ -27,12 +28,17 @@ function Script:init_gui()
     BaseGuiScript.init_gui(self)
     self.views.btn_menu:set_input_listener(function() SM:back() end)
     self.views.btn_buy_firerate:set_input_listener(function() WORLD.storage.game:firerate_level_upgrade() end)
+
+    self.views.btn_menu:text_set(COMMON.LOCALIZATION.btn_menu())
+    gui.set_text(self.vh.lbl_title, COMMON.LOCALIZATION.shop_title())
 end
 
 function Script:on_storage_changed()
     self.views.btn_buy_firerate:set_ignore_input(not WORLD.storage.game:firerate_level_can_upgrade())
-    gui.set_text(self.vh.btn_buy_firerate_lbl, string.format("Increase fire rate:%d$", WORLD.balance:firerate_level_cost_upgrade_get()))
-    gui.set_text(self.vh.lbl_money, string.format("%d$", WORLD.storage.resource:money_get()))
+    gui.set_text(self.vh.btn_buy_firerate_lbl,
+            COMMON.LOCALIZATION.shop_firerate_lbl { money = WORLD.balance:firerate_level_cost_upgrade_get() })
+    gui.set_text(self.vh.lbl_money,
+            COMMON.LOCALIZATION.shop_money_lbl { money = WORLD.storage.resource:money_get() })
 end
 
 function Script:on_input(action_id, action)

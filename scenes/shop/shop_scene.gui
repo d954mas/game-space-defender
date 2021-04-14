@@ -4,8 +4,8 @@ fonts {
   font: "/assets/fonts/roboto_bold.font"
 }
 fonts {
-  name: "game_score"
-  font: "/assets/fonts/game_score.font"
+  name: "play_bold"
+  font: "/assets/fonts/play_bold.font"
 }
 textures {
   name: "gui"
@@ -264,7 +264,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "SHOP"
-  font: "game_score"
+  font: "play_bold"
   id: "lbl_title"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -457,8 +457,8 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 2.0
-    y: 2.0
+    x: 1.75
+    y: 1.75
     z: 1.0
     w: 1.0
   }
@@ -502,6 +502,7 @@ nodes {
   alpha: 1.0
   outline_alpha: 0.0
   shadow_alpha: 1.0
+  overridden_fields: 3
   overridden_fields: 8
   template_node_child: true
   text_leading: 1.0
@@ -521,8 +522,8 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 1.4
-    y: 1.4
+    x: 2.0
+    y: 2.0
     z: 1.0
     w: 1.0
   }
@@ -540,7 +541,7 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "money:201000$"
+  text: "201000$"
   font: "roboto_bold"
   id: "lbl_money"
   xanchor: XANCHOR_NONE

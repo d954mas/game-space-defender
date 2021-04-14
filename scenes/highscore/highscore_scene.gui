@@ -1,11 +1,11 @@
 script: "/scenes/highscore/highscore_scene.gui_script"
 fonts {
-  name: "game_score"
-  font: "/assets/fonts/game_score.font"
-}
-fonts {
   name: "roboto_mono_bold"
   font: "/assets/fonts/roboto_mono_bold.font"
+}
+fonts {
+  name: "play_bold"
+  font: "/assets/fonts/play_bold.font"
 }
 textures {
   name: "gui"
@@ -264,7 +264,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "HIGHSCORE"
-  font: "game_score"
+  font: "play_bold"
   id: "lbl_title"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE

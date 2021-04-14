@@ -14,7 +14,8 @@ end
 
 function Script:bind_vh()
    self.vh = {
-      lbl_highscores = gui.get_node("lbl_highscore")
+      lbl_highscores = gui.get_node("lbl_highscore"),
+      lbl_title = gui.get_node("lbl_title")
    }
    self.views = {
       btn_menu = GUI.ButtonBase("btn_menu"),
@@ -26,12 +27,13 @@ function Script:init_gui()
    self.views.btn_menu:set_input_listener(function ()
       SM:back()
    end)
+   gui.set_text(self.vh.lbl_title,COMMON.LOCALIZATION.highscore_title())
+   self.views.btn_menu:text_set(COMMON.LOCALIZATION.btn_menu())
    self:highscore_updated()
 end
 
 function Script:highscore_updated()
     local scores = WORLD.storage.highscore:highscores_get()
-    pprint(scores)
    gui.set_text(self.vh.lbl_highscores,string.format("1)%d\n2)%d\n3)%d\n4)%d\n5)%d",scores[1],
    scores[2],scores[3],scores[4],scores[5]))
 end

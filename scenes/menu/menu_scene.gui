@@ -4,8 +4,8 @@ fonts {
   font: "/assets/fonts/roboto_bold.font"
 }
 fonts {
-  name: "game_score"
-  font: "/assets/fonts/game_score.font"
+  name: "play_bold"
+  font: "/assets/fonts/play_bold.font"
 }
 textures {
   name: "gui"
@@ -883,7 +883,7 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   text: "SPACE\n"
   "DEFENDER"
-  font: "game_score"
+  font: "play_bold"
   id: "lbl_title"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE

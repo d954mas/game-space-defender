@@ -12,7 +12,7 @@ end
 
 function Script:bind_vh()
    self.vh = {
-        lbl_score = gui.get_node("lbl_score")
+        
    }
    self.views = {
 
@@ -24,7 +24,7 @@ function Script:init_gui()
 end
 
 function Script:update(dt)
-   gui.set_text(self.vh.lbl_score,WORLD.game.score)
+ 
 end
 
 function Script:on_input(action_id,action)

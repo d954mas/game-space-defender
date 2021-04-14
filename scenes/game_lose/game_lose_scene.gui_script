@@ -14,6 +14,7 @@ end
 
 function Script:bind_vh()
     self.vh = {
+        lbl_title = gui.get_node("lbl_title"),
         lbl_money = gui.get_node("lbl_money"),
         lbl_score = gui.get_node("lbl_score"),
         lbl_wave = gui.get_node("lbl_wave"),
@@ -34,6 +35,7 @@ function Script:init_gui()
         WORLD.ads:show_interstitial_ad("menu_play")
         SM:back_to(SM.SCENES.MENU)
     end)
+    gui.set_text(self.vh.lbl_title, COMMON.LOCALIZATION.lose_title())
     self.views.btn_money_x2:set_ignore_input(not WORLD.ads:rewarded_ad_exist())
     self.views.btn_money_x2:set_input_listener(function()
         WORLD.ads:rewarded_ad_show("game_lose_money_x2")
@@ -41,14 +43,32 @@ function Script:init_gui()
         --add money
         self.money_x2 = true
         WORLD.storage.resource:money_add(WORLD.balance:score_to_money(WORLD.game.score))
-        gui.set_text(self.vh.lbl_money, string.format("Money:%d$",
-                WORLD.balance:score_to_money(WORLD.game.score)*(self.money_x2 and 2 or 1)))
+        gui.set_text(self.vh.lbl_money,
+                COMMON.LOCALIZATION.lose_money_lbl { money = WORLD.balance:score_to_money(WORLD.game.score) * (self.money_x2 and 2 or 1) })
     end)
     self.views.btn_restart:set_input_listener(function() SM:reload(nil, { close_modals = true }) end)
-    gui.set_text(self.vh.lbl_score, string.format("Score:%d", WORLD.game.score))
-    gui.set_text(self.vh.lbl_money, string.format("Money:%d$", WORLD.balance:score_to_money(WORLD.game.score)*(self.money_x2 and 2 or 1)))
-    gui.set_text(self.vh.lbl_wave, string.format("Wave:%d", WORLD.game.level))
+    gui.set_text(self.vh.lbl_score,
+            COMMON.LOCALIZATION.lose_score_lbl { score = WORLD.game.score })
+    gui.set_text(self.vh.lbl_money,
+            COMMON.LOCALIZATION.lose_money_lbl { money = WORLD.balance:score_to_money(WORLD.game.score) * (self.money_x2 and 2 or 1) })
+    gui.set_text(self.vh.lbl_wave,
+            COMMON.LOCALIZATION.lose_wave_lbl { wave = WORLD.game.level })
     gui.animate(self.vh.root, "color.w", 1, gui.EASING_OUTQUAD, 1, 0)
+
+    self.views.btn_money_x2:text_set(COMMON.LOCALIZATION.btn_money_x2())
+    self.views.btn_restart:text_set(COMMON.LOCALIZATION.btn_restart())
+    self.views.btn_menu:text_set(COMMON.LOCALIZATION.btn_menu())
+end
+
+
+function Script:update(dt)
+    local ctx = COMMON.CONTEXT:set_context_top_game()
+    --for bug game was update twice time
+    --all balance is for x2 time so
+    --update game second time
+    WORLD.game:update(dt)
+    WORLD.game:update(dt)
+    ctx:remove()
 end
 
 function Script:on_input(action_id, action)

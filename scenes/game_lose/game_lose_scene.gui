@@ -4,8 +4,8 @@ fonts {
   font: "/assets/fonts/roboto_bold.font"
 }
 fonts {
-  name: "game_score"
-  font: "/assets/fonts/game_score.font"
+  name: "play_bold"
+  font: "/assets/fonts/play_bold.font"
 }
 textures {
   name: "gui"
@@ -131,7 +131,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 450.0
+    x: 480.0
     y: 150.0
     z: 0.0
     w: 1.0
@@ -163,6 +163,7 @@ nodes {
   clipping_visible: true
   clipping_inverted: false
   alpha: 1.0
+  overridden_fields: 4
   template_node_child: true
   size_mode: SIZE_MODE_MANUAL
 }
@@ -186,7 +187,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 400.0
+    x: 430.0
     y: 120.0
     z: 0.0
     w: 1.0
@@ -218,6 +219,7 @@ nodes {
   clipping_visible: true
   clipping_inverted: false
   alpha: 1.0
+  overridden_fields: 4
   template_node_child: true
   size_mode: SIZE_MODE_MANUAL
 }
@@ -382,7 +384,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "YOU LOSE"
-  font: "game_score"
+  font: "play_bold"
   id: "lbl_title"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -471,7 +473,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 450.0
+    x: 480.0
     y: 150.0
     z: 0.0
     w: 1.0
@@ -503,6 +505,7 @@ nodes {
   clipping_visible: true
   clipping_inverted: false
   alpha: 1.0
+  overridden_fields: 4
   template_node_child: true
   size_mode: SIZE_MODE_MANUAL
 }
@@ -526,7 +529,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 400.0
+    x: 430.0
     y: 120.0
     z: 0.0
     w: 1.0
@@ -558,6 +561,7 @@ nodes {
   clipping_visible: true
   clipping_inverted: false
   alpha: 1.0
+  overridden_fields: 4
   template_node_child: true
   size_mode: SIZE_MODE_MANUAL
 }
@@ -811,7 +815,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 550.0
+    x: 600.0
     y: 180.0
     z: 0.0
     w: 1.0
@@ -843,6 +847,7 @@ nodes {
   clipping_visible: true
   clipping_inverted: false
   alpha: 1.0
+  overridden_fields: 4
   template_node_child: true
   size_mode: SIZE_MODE_MANUAL
 }
@@ -866,7 +871,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 500.0
+    x: 550.0
     y: 120.0
     z: 0.0
     w: 1.0
@@ -898,6 +903,7 @@ nodes {
   clipping_visible: true
   clipping_inverted: false
   alpha: 1.0
+  overridden_fields: 4
   template_node_child: true
   size_mode: SIZE_MODE_MANUAL
 }
@@ -915,8 +921,8 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 2.0
-    y: 2.0
+    x: 1.7
+    y: 1.7
     z: 1.0
     w: 1.0
   }
@@ -960,6 +966,8 @@ nodes {
   alpha: 1.0
   outline_alpha: 0.0
   shadow_alpha: 1.0
+  overridden_fields: 3
+  overridden_fields: 8
   template_node_child: true
   text_leading: 1.0
   text_tracking: 0.0
