@@ -43,16 +43,16 @@ end
 
 function Ads:show_interstitial_ad(ad_placement)
     if (os.clock() > self.interstitial_ad_next_time) then
-        COMMON.w("interstitial_ad show", TAG)
+        COMMON.i("interstitial_ad show", TAG)
         if (gdsdk) then
             gdsdk.show_interstitial_ad()
             ANALYTICS:ad_rewarded_show("gdsdk", ad_placement)
         else
-            COMMON.w("interstitial_ad no provider")
+            COMMON.i("interstitial_ad no provider")
         end
         self.interstitial_ad_next_time = os.clock() + self.interstitial_ad_delay
     else
-        COMMON.w("interstitial_ad need wait", TAG)
+        COMMON.i("interstitial_ad need wait", TAG)
     end
 end
 
@@ -68,6 +68,21 @@ function Ads:rewarded_ad_exist()
 
     else
         return true
+    end
+end
+
+function Ads:banner_show(ad_placement)
+    COMMON.i("banner show:" .. ad_placement)
+    if (gdsdk) then
+        gdsdk.show_display_ad("canvas-ad")
+    end
+
+  
+end
+function Ads:banner_hide(ad_placement)
+    COMMON.i("banner hide:" .. ad_placement)
+    if (gdsdk) then
+        gdsdk.hide_display_ad("canvas-ad")
     end
 end
 
