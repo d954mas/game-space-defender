@@ -3,6 +3,25 @@ local _ = require "libs.checks"
 reqf = _G.require -- to fix cyclic dependencies
 
 local M = {}
+
+--region log
+M.LOG = require "libs.log"
+function M.init_log()
+    M.LOG.set_appname("Game")
+    M.LOG.toggle_print()
+    M.LOG.override_print()
+    M.LOG.add_to_blacklist("Sound")
+    M.LOG.add_to_blacklist("States")
+    M.LOG.use_tag_blacklist = true
+
+    local old_w = M.LOG.w
+    M.LOG.w = function(message, tag, debug_level)
+        old_w(message, tag, debug_level)
+    end
+end
+M.init_log()
+--endregion
+
 M.GLOBAL = {
     speed_game = 1,
     time_init_start = os.clock()
@@ -47,29 +66,12 @@ function M.input_release(url)
 end
 --endregion
 
---region log
-M.LOG = require "libs.log"
+
 
 ---@type Features
 M.FEATURES = nil
 
-function M.init_log()
-    M.LOG.set_appname("Game")
-    M.LOG.toggle_print()
-    M.LOG.override_print()
-    M.LOG.add_to_blacklist("Sound")
-    M.LOG.add_to_blacklist("States")
-    M.LOG.use_tag_blacklist = true
 
-    local old_w = M.LOG.w
-    M.LOG.w = function(message, tag, debug_level)
-        old_w(message, tag, debug_level)
-        if (M.GA) then
-            M.GA.exception(M.JSON.encode({ warning = true, message = message, tag = tag, debug_level = debug_level }, false));
-        end
-    end
-end
-M.init_log()
 
 function M.t(message, tag)
     M.LOG.t(message, tag, 2)

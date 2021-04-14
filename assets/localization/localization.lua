@@ -1,9 +1,10 @@
 local I18N = require "libs.i18n.init"
 local LOG = require "libs.log"
+local CONSTANTS = require "libs.constants"
 local TAG = "LOCALIZATION"
 local LOCALES = { "en", "ru" }
-local DEFAULT = "en"
-local FALLBACK = "en"
+local DEFAULT = CONSTANTS.LOCALIZATION.DEFAULT
+local FALLBACK = DEFAULT
 
 ---@class Localization
 local M = {
@@ -18,11 +19,17 @@ function M:locale_exist(key)
 end
 
 function M:set_locale(locale)
+	LOG.w("set locale:" .. locale,TAG)
 	I18N.setLocale(locale)
 end
 
 I18N.setFallbackLocale(FALLBACK)
-I18N.setLocale(DEFAULT)
+M:set_locale(DEFAULT)
+if(CONSTANTS.LOCALIZATION.FORCE_LOCALE)then
+	M:set_locale(CONSTANTS.LOCALIZATION.FORCE_LOCALE)
+elseif(CONSTANTS.LOCALIZATION.USE_SYSTEM)then
+	M:set_locale(sys.get_sys_info().language)
+end
 
 for _, locale in ipairs(LOCALES) do
 	local table = {}

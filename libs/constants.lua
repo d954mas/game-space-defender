@@ -44,7 +44,11 @@ M.TARGET_IS_YANDEX_GAMES = M.GAME_TARGET == M.TARGETS.YANDEX_GAMES
 
 M.IS_TESTS = sys.get_config("tests.tests_run")
 
-
+M.LOCALIZATION = {
+    DEFAULT = sys.get_config("localization.default") or "en",
+    USE_SYSTEM = ((sys.get_config("localization.use_system") or "false") == true) and true or false,
+    FORCE_LOCALE = sys.get_config("localization.force_locale")
+}
 
 M.GUI_ORDER = {
     GAME = 2,

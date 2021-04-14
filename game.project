@@ -153,3 +153,7 @@ custom_dimensions_01 = editor,play_market,game_distribution,poki,itch_io,yandex_
 version = dev
 target = editor
 
+[localization]
+default = en
+use_system = false
+force_locale = ru
