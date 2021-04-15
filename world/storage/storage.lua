@@ -16,7 +16,7 @@ Storage.FILE_PATH = "d954mas_space_defender"
 Storage.VERSION = 15
 Storage.AUTOSAVE = 30 --seconds
 Storage.CLEAR = CONSTANTS.VERSION_IS_DEV and false --BE CAREFUL. Do not use in prod
-Storage.LOCAL = CONSTANTS.VERSION_IS_DEV and CONSTANTS.PLATFORM_IS_PC and true --BE CAREFUL. Do not use in prod
+Storage.LOCAL = CONSTANTS.VERSION_IS_DEV and CONSTANTS.PLATFORM_IS_PC and CONSTANTS.TARGET_IS_EDITOR and true --BE CAREFUL. Do not use in prod
 
 ---@param world World
 function Storage:initialize(world)

@@ -57,6 +57,8 @@ function Script:init()
         COMMON.FEATURES:debug_config()
     end
 
+    WORLD.ads:init()
+
     COMMON.FEATURES:load()
     self.thread = COMMON.ThreadManager()
     self.thread.drop_empty = false
