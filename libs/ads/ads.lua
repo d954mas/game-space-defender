@@ -125,6 +125,7 @@ function Ads:rewarded_ad_show(ad_placement, cb)
             return
         else
             self.gdsdk_callback = cb
+            self.gdsdk_context = lua_script_instance.Get()
         end
         gdsdk.show_rewarded_ad()
         ANALYTICS:ad_rewarded_show("gdsdk", ad_placement)
