@@ -64,6 +64,19 @@
 		user-select: none;
 	}
 
+	#turn{
+		width:100%;
+		height:100%;
+		position:fixed;
+		top:0px;
+		left:0px;
+		background-color:white;
+		background-image:url('playportrait.png');
+		background-repeat:no-repeat;
+		background-position: center center;
+		display:none;
+	}
+
 	{{{DEFOLD_CUSTOM_CSS_INLINE}}}
 	</style>
 </head>
@@ -85,6 +98,7 @@
 		<!-- <div style="position: absolute; bottom: 0px; left: 50%;">
 			<div id="canvas-ad" style="width: 300px; height:250px; margin-left: -50%;"/>
 		</div> -->
+		<div id = "turn"></div>
 	</div>
 
 	<!-- -->
@@ -126,12 +140,25 @@
 {{#html5.show_fullscreen_button}}
 	buttonHeight = 42;
 {{/html5.show_fullscreen_button}}
-	// Resize on init, screen resize and orientation change
+	function check_orientation(){
+		function handleIncorrect(){
+			if(!game.device.desktop){
+				document.getElementById("turn").style.display="block";
+			}
+		}
+	}
+
 	function resize_game_canvas() {
 		// Hack for iOS when exit from Fullscreen mode
 		if (is_iOS) {
 			window.scrollTo(0, 0);
 		}
+		var portrait = false
+		var orientation = screen.orientation.type
+		if(orientation === "portrait" || orientation === "portrait-primary" || orientation === "portrait-secondary"){
+			portrait = true;
+		}
+		console.log('resize portrait:', portrait);
 
 		var app_container = document.getElementById('app-container');
 		var game_canvas = document.getElementById('canvas');
