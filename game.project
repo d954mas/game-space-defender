@@ -154,6 +154,6 @@ version = release
 target = editor
 
 [localization]
-default = en
+default = ru
 use_system = false
 
